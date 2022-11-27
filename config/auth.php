@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'jwt-staff' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'jwt-client' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
     ],
 
     /*
@@ -64,11 +72,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Staff::class,
+        ],
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Customer::class,
+        ],
     ],
 
     /*
