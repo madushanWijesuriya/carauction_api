@@ -2,7 +2,14 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
+use Laravel\Sanctum\Exceptions\MissingAbilityException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -38,4 +45,26 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $e)
+    {
+        
+        // if($e instanceof AccessDeniedHttpException){
+        //     return response()->json(['error' => [
+        //         'status' => 403,
+        //         'message' =>'invalid request'
+        //     ] ],403);
+        // }else
+        
+        if($e instanceof MissingAbilityException){
+            return response()->json(['message' =>'invalid request'],403);
+        }elseif($e instanceof NotFoundHttpException){
+            return response()->json(['message' =>'not found'],404);
+        }else{
+            return parent::render($request, $e);
+        }
+
+
+    }
+    
 }
