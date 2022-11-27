@@ -12,7 +12,7 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "*"
+        "laravel/ui": "*",
         "spatie/laravel-permission": "*",
         "spatie/laravel-query-builder": "4.0.3"
     },
