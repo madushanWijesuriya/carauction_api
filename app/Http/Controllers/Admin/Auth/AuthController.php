@@ -81,7 +81,9 @@ class AuthController extends Controller
 
                 $token = $user->createToken("token",["jwt-staff"])->plainTextToken;
 
-                $cookie = cookie('jwt-staff', $token, 60 * 24)->withSameSite('none');
+                $cookie = cookie('jwt-staff', $token, 60 * 24)
+                ->withSameSite('none')
+                ->withSecure(true);
 
                 return response()->json([
                     'status' => true,
