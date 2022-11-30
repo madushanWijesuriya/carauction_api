@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Common;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 use App\Models\VhBodyType;
 use App\Models\VhDoorTypes;
 use App\Models\VhDriveTypes;
@@ -41,6 +42,9 @@ class ResourceController extends Controller
     }
     public function getDoorTypesList(){
         return response()->json(['data' => VhDoorTypes::select('id', 'name')->get()]);
+    }
+    public function getCountriesList(){
+        return response()->json(['data' => Country::select('id', 'name')->get()]);
     }
     public function getDriveTypesList(){
         return response()->json(['data' => VhDriveTypes::select('id', 'name')->get()]);

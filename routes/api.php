@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Customer\Auth\AuthController;
+use App\Http\Controllers\Customer\Auth\InqueryController;
+use App\Http\Controllers\Guest\InqueryController as GuestInqueryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,7 +20,7 @@ Route::middleware(['auth:sanctum'])->get('/auth/checkLogin', function () {
     return response()->json(['data' => auth()->user()], 200);
 
 });
-Route::middleware(['auth:sanctum'])->prefix('resources')->group(function () {
+Route::prefix('resources')->group(function () {
     Route::get('/maker',[ResourceController::class,'getMakerList']);
     Route::get('/model/{make_id}',[ResourceController::class,'getModelList']);
     Route::get('/status',[ResourceController::class,'getStatusList']);
@@ -30,6 +32,7 @@ Route::middleware(['auth:sanctum'])->prefix('resources')->group(function () {
     Route::get('/fuel-types',[ResourceController::class,'getFuelTypesList']);
     Route::get('/exterior-colors',[ResourceController::class,'getExteriorColorsList']);
     Route::get('/features',[ResourceController::class,'getFeaturesList']);
+    Route::get('/countries',[ResourceController::class,'getCountriesList']);
 });
 
 //======Staff Routes==================================================================//
@@ -82,3 +85,18 @@ Route::get('/customer/email/verify/{id}/{hash}', [AuthController::class, 'verify
 Route::post('/customer/email/verification-notification', [AuthController::class, 'resendVerification'])->middleware(['auth:sanctum', 'abilities:jwt-client', 'throttle:6,1'])->name('verification.send');
 
 Route::middleware(['auth:sanctum', 'abilities:jwt-client'])->get('/customer/user', [AuthController::class, 'getCurrentUser']);
+
+Route::middleware(['auth:sanctum', 'abilities:jwt-client'])->prefix('customer')->group(function () {
+    
+    Route::resources(['inquery' => InqueryController::class]);
+
+});
+
+
+
+
+//================ Guest routes=====================
+Route::prefix('guest')->group(function () {
+    Route::resources(['inquery' => GuestInqueryController::class]);
+});
+
