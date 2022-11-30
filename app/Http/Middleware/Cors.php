@@ -17,7 +17,7 @@ class Cors
     public function handle(Request $request, Closure $next)
     {
         return $next($request)
-        ->header('Access-Control-Allow-Origin', '*')
+        ->header('Access-Control-Allow-Origin', 'https://car-auction-staging.netlify.app')
         ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     }
 }
