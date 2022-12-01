@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Staff;
+use App\Models\User;
 use App\Models\VhBodyType;
 use App\Models\VhDoorTypes;
 use App\Models\VhDriveTypes;
@@ -13,6 +15,7 @@ use App\Models\VhModel;
 use App\Models\VhStatus;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
