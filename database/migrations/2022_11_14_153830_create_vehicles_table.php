@@ -32,8 +32,8 @@ class CreateVehiclesTable extends Migration
             $table->string('displacement');
             $table->string('grade');
             $table->string('cover_image');
-            $table->string('description');
-            $table->string('private_note');
+            $table->text('description');
+            $table->text('private_note');
             $table->string('sup_name');
             $table->string('sup_url');
             $table->double('sup_price');
