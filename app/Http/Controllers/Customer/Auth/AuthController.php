@@ -83,13 +83,13 @@ class AuthController extends Controller
                 }
                 $token = $user->createToken("token",["jwt-client"])->plainTextToken;
 
-                if(env('APP_ENV' != 'local')){
+                if(env('APP_ENV') != 'local'){
                     $cookie = cookie('jwt-client', $token, 60 * 24)
-                    ->withSameSite('none')
-                    ->withSecure(true);
+                            ->withSameSite('none')
+                            ->withSecure(true);
                 }else{
                     $cookie = cookie('jwt-client', $token, 60 * 24)
-                ->withSameSite('none');
+                            ->withSameSite('none');
                 }
 
                 
