@@ -67,18 +67,110 @@ class CountrySeeder extends Seeder
         $pages = [
             'Country',
         ];
+
+
+
+    $contents = [
+        'header_01' => [
+            'mobileSize' =>[
+                'value' => [
+                    [
+                        'Fully'
+                    ],
+                    [
+                        'Transparent'
+                    ],
+                    [
+                        'Fully'
+                    ],
+                    [
+                        'in Control'
+                    ]
+                ]
+                ],
+                'normalSize' => [
+                    'value' => [
+                        [
+                            'Fully Transparent'
+                        ],
+                        [
+                            'Fully in Control'
+                        ],
+                    ]
+                ]
+            
+        ],
+        'para_01' => [
+            'say hello to an online shopping experience that pute you right in the drivers seat.'
+        ],
+        'header_02' => [
+            'value' => 'Contact Us',
+            'sub_content' => [
+                [
+                    'name' => 'Office',
+                    'value' => '123 Anywhere St., Any City, ST 12345',
+                ],
+                [
+                    'name' => 'Phone Number',
+                    'value' => '+123-456-789 0',
+                ],
+                [
+                    'name' => 'Email',
+                    'value' => 'hello@reallygreatsite.com',
+                ]
+            ]
+        ],
+        'header_03' => [
+            'value' => [
+                [
+                    'value' => 'Why do',
+                 ],
+                 [
+                     'value' => 'Sri Lankan'
+                 ],
+                 [
+                     'value' => 'customers choose JAMAX to buy a car in Japan?'
+                 ]
+                ],
+                'sub_content' => [
+                    'value' => 'We will give you a member registration form that you can use to register with us. Jamex Auto Auctions will give you due assistance regarding the procedure with which you can place your bids and control them for the deposit, auction, and payments.'
+                ]
+                ],
+
+                'timeLine' => [
+                    'title_01' => [
+                        'name' => 'Fully tested car',
+                        'value' => 'The motors we export are fully inspected. We guarantee you that you will get a satisfying car at the lowest price. The condition of the car is the same as the public sale list, as there are fair inspectors who guarantee complete satisfaction to customers around the world.',
+                    ],
+                    'title_02' => [
+                        'name' => 'Lowest price',
+                        'value' => 'Jamex Motors achieves the lowest price for a car by avoiding the hidden costs that directly increase the overall value of the used car.',
+                    ],
+                    'title_03' => [
+                        'name' => 'Prompt delivery',
+                        'value' => 'Transportation has become faster and easier thanks to our public sale houses near the harbor. We have a strong connection with the Sri Lankan shipping company.',
+                    ],
+                    'title_04' => [
+                        'name' => 'Well paid network',
+                        'value' => 'Our well-distributed community of more than 140 public housing in Japan provides 145,000 vehicles to our customers each week.',
+                    ],
+                    'title_05' => [
+                        'name' => 'Full buyer support',
+                        'value' => 'We have 24/7 buyer support exclusively for clients who want to get informationon the safe transportation of vehicles in Sri Lanka. With the support of Sri Lankas Logistics Agency, additional secure customs clearance is permitted.',
+                    ]
+                ]
+    ];
      foreach ($pages as $index => $page) {
          $page = Page::updateOrCreate(['name'=>$page]);
-         foreach ($countries as $index => $value) {
+         foreach ($contents as $index => $value) {
             $content = Content::updateOrCreate([
                 'page_id' => $page->id,
-                'contents' => 'Heading - '.$index,
+                'key' => $index,
+                'contents' => $index,
+                'data' => $value
             ]);
          }
-         
-        
     }
-
 
     foreach ($countries as $index => $value) {
         $country = Country::updateOrCreate(['name'=>$value]);

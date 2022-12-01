@@ -23,9 +23,10 @@ class CreateInqueriesTable extends Migration
             $table->string('cell_no');
             $table->string('port_name');
             $table->string('mobile_no');
-            $table->string('message');
+            $table->text('message');
             $table->timestamps();
         });
+
     }
 
     /**

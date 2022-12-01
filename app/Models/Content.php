@@ -10,6 +10,12 @@ class Content extends Model
     use HasFactory;
     protected $fillable = [
         'page_id',
-        'contents'
+        'key',
+        'contents',
+        'data'
+    ];
+
+    protected $casts = [
+        'data'  => 'array'
     ];
 }

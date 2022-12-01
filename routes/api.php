@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\VehicleController;
 use App\Http\Controllers\Common\ResourceController;
 use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\InqueryController as AdminInqueryController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Customer\Auth\AuthController;
 use App\Http\Controllers\Customer\Auth\InqueryController;
@@ -75,6 +76,11 @@ Route::middleware(['auth:sanctum', 'abilities:jwt-staff'])->prefix('staff')->gro
     Route::resources(['customer' => CustomerController::class]);
 
 
+    //inquery
+    Route::resources(['inquery' => AdminInqueryController::class]);
+
+
+
 
 });
 //=====Customer Routes==================================================================//
@@ -98,7 +104,7 @@ Route::middleware(['auth:sanctum', 'abilities:jwt-client'])->prefix('customer')-
 //================ Guest routes=====================
 Route::prefix('guest')->group(function () {
     Route::resources(['inquery' => GuestInqueryController::class]);
-        Route::resources(['vehicle' => GuestVehicleController::class]);
+    Route::resources(['vehicle' => GuestVehicleController::class]);
 
 });
 
