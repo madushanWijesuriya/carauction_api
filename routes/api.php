@@ -10,6 +10,8 @@ use App\Http\Controllers\Customer\Auth\AuthController;
 use App\Http\Controllers\Customer\Auth\InqueryController;
 use App\Http\Controllers\Guest\InqueryController as GuestInqueryController;
 use App\Http\Controllers\Guest\VehicleController as GuestVehicleController;
+use Database\Seeders\CountrySeeder;
+use Database\Seeders\PermissionSeeder;
 use Illuminate\Support\Facades\Route;
 
 
@@ -108,3 +110,13 @@ Route::prefix('guest')->group(function () {
 
 });
 
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schema;
+
+Route::prefix('db-seed')->group(function(){
+    Artisan::call("migrate:fresh");
+    Artisan::call("db:seed");
+});
