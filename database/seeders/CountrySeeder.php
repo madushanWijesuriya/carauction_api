@@ -167,7 +167,7 @@ class CountrySeeder extends Seeder
                 'page_id' => $page->id,
                 'key' => $index,
                 'contents' => $index,
-                'data' => $value
+                'data' => '',
             ]);
          }
     }
