@@ -17,6 +17,7 @@ use App\Models\VhStatus;
 use App\Models\VhStreeing;
 use App\Models\VhTransmission;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class ResourceController extends Controller
 {
@@ -57,5 +58,9 @@ class ResourceController extends Controller
     }
     public function getFeaturesList(){
         return response()->json(['data' => VhFeatures::select('id', 'name')->get()]);
+    }
+
+    public function getRoleList(){
+        return response()->json(['data' => Role::select('id','name')->get()]);
     }
 }
