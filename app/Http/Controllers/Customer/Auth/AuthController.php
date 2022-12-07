@@ -88,8 +88,7 @@ class AuthController extends Controller
                             ->withSameSite('none')
                             ->withSecure(true);
                 }else{
-                    $cookie = cookie('jwt-client', $token, 60 * 24)
-                            ->withSameSite('none');
+                    $cookie = cookie('jwt-client', $token, 60 * 24);
                 }
 
                 
