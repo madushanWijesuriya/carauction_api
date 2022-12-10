@@ -1,0 +1,2196 @@
+{
+	"info": {
+		"_postman_id": "853fab84-e85e-4b01-b452-1a73bfee6f70",
+		"name": "CarAuctionAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18650790"
+	},
+	"item": [
+		{
+			"name": "Staff",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admina@gmail.com\",\r\n    \"password\": \"admin123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"shanwijesuriya.madushan@gmail.com\",\r\n    \"password\": \"11111111\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/auth/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Admin\",\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"admin123\",\r\n    \"password_confirmation\":\"admin123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get current user",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/staff/user",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Vehicle",
+					"item": [
+						{
+							"name": "get",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle?filter[name]=john&filter[email]=gmail\n",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle"
+									],
+									"query": [
+										{
+											"key": "filter[name]",
+											"value": "john"
+										},
+										{
+											"key": "filter[email]",
+											"value": "gmail\n"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "make_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "model_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "status_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "body_type_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "transmission_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "streeing_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "door_type_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "driver_type_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "fuel_type_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "exterior_color_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "feature_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "chassis_no",
+											"value": "{{$randomPassword}}",
+											"type": "text"
+										},
+										{
+											"key": "make_at",
+											"value": "2022-09-22",
+											"type": "text"
+										},
+										{
+											"key": "fob_price",
+											"value": "1000",
+											"type": "text"
+										},
+										{
+											"key": "displacement",
+											"value": "{{$randomProductName}}",
+											"type": "text"
+										},
+										{
+											"key": "isUsed",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "mileage",
+											"value": "10000000",
+											"type": "text"
+										},
+										{
+											"key": "grade",
+											"value": "A",
+											"type": "text"
+										},
+										{
+											"key": "cover_image",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_022835.png"
+										},
+										{
+											"key": "description",
+											"value": "{{$randomLoremParagraph}}",
+											"type": "text"
+										},
+										{
+											"key": "private_note",
+											"value": "{{$randomLoremParagraph}}",
+											"type": "text"
+										},
+										{
+											"key": "sup_name",
+											"value": "{{$randomCompanyName}}",
+											"type": "text"
+										},
+										{
+											"key": "sup_price",
+											"value": "200000",
+											"type": "text"
+										},
+										{
+											"key": "sup_url",
+											"value": "https://google.com",
+											"type": "text"
+										},
+										{
+											"key": "market_price",
+											"value": "3000000",
+											"type": "text"
+										},
+										{
+											"key": "images[0]",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_075503.png"
+										},
+										{
+											"key": "images[1]",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_075503.png"
+										},
+										{
+											"key": "images[2]",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_075503.png"
+										},
+										{
+											"key": "images[3]",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_075503.png"
+										},
+										{
+											"key": "images[4]",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_075503.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "quick add maker",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"model1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/maker/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"maker",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "quick add body-type",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"body1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/body-type/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"body-type",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "quick add transmission",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"transmission1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/transmission/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"transmission",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "quick add model",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"model1\",\r\n    \"make_id\" :1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/model/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"model",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "quick add streeings",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"streeings1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/streeings/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"streeings",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "quick add door-types",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"streeings1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/door-types/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"door-types",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "quick add driver-types",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"streeings1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/drive-types/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"drive-types",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "quick add fuel-types",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"fuel1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/fuel-types/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"fuel-types",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "quick add exterior-colors",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"colors1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/exterior-colors/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"exterior-colors",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "quick add features",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"feature1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/features/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"features",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"make_id\": 1,\r\n    \"model_id\": 1,\r\n    \"status_id\": 1,\r\n    \"body_type_id\": 1,\r\n    \"transmission_id\": 1,\r\n    \"streeing_id\": 1,\r\n    \"door_type_id\":1 ,\r\n    \"driver_type_id\": 1,\r\n    \"fuel_type_id\": 1,\r\n    \"exterior_color_id\": 1,\r\n    \"feature_id\": 1,\r\n    \"chassis_no\":\"sssssssaaaaaasasas\",\r\n    \"make_at\": \"2022-09-22\",\r\n    \"fob_price\": 1000,\r\n    \"displacement\": \"sssssss\",\r\n    \"isUsed\": true,\r\n    \"mileage\": 10000000,\r\n    \"grade\": \"A\",\r\n    \"cover_image\": \"https://jamex.co.jp/images/57369_4750_f08421.jpg\",\r\n    \"description\": \"sssssssssssssssssssssssssssssssssss\",\r\n    \"private_note\": \"1\",\r\n    \"sup_name\": \"sup10\",\r\n    \"sup_price\": 100000,\r\n    \"sup_url\": \"https://google.com\",\r\n    \"market_price\" :200000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "StaffUser",
+					"item": [
+						{
+							"name": "show",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/staff/staffuser/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"staffuser",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/staff/staffuser?filter[roles.id]=1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"staffuser"
+									],
+									"query": [
+										{
+											"key": "filter[roles.id]",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/staff/staffuser/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"staffuser",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"{{$randomFirstName}}\",\r\n    \"email\":\"bbbbbbbbbbbbbb.madushan@gmail.com\",\r\n    \"password\":\"11111111\",\r\n    \"password_confirmation\":\"11111111\",\r\n    \"role_id\":2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/staffuser",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"staffuser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"test1\",\r\n    \"email\":\"madushan.madushan@gmail.com\",\r\n    \"password\":\"11111111\",\r\n    \"password_confirmation\":\"11111111\",\r\n    \"role_id\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/staffuser/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"staffuser",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Content",
+					"item": [
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"contents\" : \"AAAAAABBBBBBBCCCCCCCCCCC\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/content/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"content",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/staff/content?noPagination=true",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"content"
+									],
+									"query": [
+										{
+											"key": "filter[name]",
+											"value": "john",
+											"disabled": true
+										},
+										{
+											"key": "noPagination",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get content by country",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/staff/content/country/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"content",
+										"country",
+										":id"
+									],
+									"query": [
+										{
+											"key": "filter[name]",
+											"value": "john",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Customers",
+					"item": [
+						{
+							"name": "get",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/staff/customer?filter[country_id]=2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"customer"
+									],
+									"query": [
+										{
+											"key": "filter[name]",
+											"value": "test",
+											"disabled": true
+										},
+										{
+											"key": "noPagination",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "filter[country_id]",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "block user",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/staff/customer/change-status/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"customer",
+										"change-status",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get Copy 2",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/staff/content?noPagination=true",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"content"
+									],
+									"query": [
+										{
+											"key": "filter[name]",
+											"value": "john",
+											"disabled": true
+										},
+										{
+											"key": "noPagination",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Inquery",
+					"item": [
+						{
+							"name": "get",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/staff/inquery",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"inquery"
+									],
+									"query": [
+										{
+											"key": "filter[name]",
+											"value": "john",
+											"disabled": true
+										},
+										{
+											"key": "noPagination",
+											"value": "true",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"1madushan@gmail.com\",\r\n    \"password\": \"11111111\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/customer/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"test1@gmail.com\",\r\n    \"password\": \"test1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/customer/auth/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"{{$randomFileName}}\",\r\n    \"email\":\"{{$randomEmail}}\",\r\n    \"password\":\"11111111\",\r\n    \"password_confirmation\":\"11111111\",\r\n    \"country_id\": 2,\r\n    \"isActive\" : 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/customer/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "verify email",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/customer/email/verify/3/335d82fc0cb9b0a9f78cc71eb363cc2c2fafad87?expires=1664988206&signature=5747ba4b46be12ca75d6ff015f7d0b5e2217ddd0b627a45b1e50349d170ff218",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"email",
+										"verify",
+										"3",
+										"335d82fc0cb9b0a9f78cc71eb363cc2c2fafad87"
+									],
+									"query": [
+										{
+											"key": "expires",
+											"value": "1664988206"
+										},
+										{
+											"key": "signature",
+											"value": "5747ba4b46be12ca75d6ff015f7d0b5e2217ddd0b627a45b1e50349d170ff218"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "resend verification",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/customer/email/verification-notification",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"email",
+										"verification-notification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get current user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "8|iiUfVUrvr2envtcSsl2nOIQ8Wts9Q7YaId0I7jmE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/customer/user",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Inquery",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"vehicle_id\": \"1\",\r\n    \"country_id\": \"1\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"cell_no\": \"2312312312321\",\r\n    \"port_name\": \"colombo port\",\r\n    \"mobile_no\": \"231231231232\",\r\n    \"message\": \"{{$randomLoremParagraph}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/customer/inquery",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"inquery"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Common",
+			"item": [
+				{
+					"name": "Resources",
+					"item": [
+						{
+							"name": "get model",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/api/resources/model/:make_id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"model",
+										":make_id"
+									],
+									"variable": [
+										{
+											"key": "make_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get maker",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/maker",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"maker"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get status",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/status",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get body-type",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/body-type",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"body-type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get transmission",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/transmission",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"transmission"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get streeings",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/streeings",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"streeings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get door-types",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/door-types",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"door-types"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get drive-types",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/drive-types",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"drive-types"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get fuel-types",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/fuel-types",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"fuel-types"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get exterior-colors",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/status",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get features",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/features",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"features"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get countries",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/countries",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"countries"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get roles",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/roles",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "check login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/auth/checkLogin",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"checkLogin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Guest",
+			"item": [
+				{
+					"name": "Inquery",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"vehicle_id\": \"5\",\r\n    \"country_id\": \"6\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"cell_no\": \"2312312312\",\r\n    \"port_name\": \"colombo port\",\r\n    \"mobile_no\": \"231231231232\",\r\n    \"message\": \"{{$randomLoremParagraph}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/guest/inquery",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"guest",
+										"inquery"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Vehicle",
+					"item": [
+						{
+							"name": "get",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/guest/vehicle?filter[name]=john&filter[email]=gmail\n",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"guest",
+										"vehicle"
+									],
+									"query": [
+										{
+											"key": "filter[name]",
+											"value": "john"
+										},
+										{
+											"key": "filter[email]",
+											"value": "gmail\n"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/guest/vehicle/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"guest",
+										"vehicle",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
