@@ -14,15 +14,18 @@ use App\Models\VhDriveTypes;
 use App\Models\VhExteriorColor;
 use App\Models\VhFeatures;
 use App\Models\VhFuelTypes;
+use App\Models\VhImages;
 use App\Models\VhMakeModel;
 use App\Models\VhMaker;
 use App\Models\VhModel;
 use App\Models\VhStreeing;
 use App\Models\VhTransmission;
+use App\Services\ImageService;
 use App\Services\ResponseGenerator;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class VehicleController extends Controller
@@ -33,10 +36,10 @@ class VehicleController extends Controller
         
         $vehicles = QueryBuilder::for($query)
             ->allowedFilters(['make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'make_at', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price'])
-            ->allowedSorts(['make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'make_at', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price']);
+            ->allowedSorts(['id', 'make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'make_at', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price']);
     
             if( !$request->has('noPagination')) {
-                $vehicles = $vehicles->paginate($request['paginate'] <= 50 ? $request['paginate'] : null);
+                $vehicles = $vehicles->paginate(50);
             } else {
                 $vehicles = $vehicles->get();
             }
@@ -52,9 +55,33 @@ class VehicleController extends Controller
     public function store(CreateVehicleRequest $request)
     {
         try{
+            
             $result = DB::transaction(function () use ($request) {
+
+                foreach ($request->file('image') as $key => $image) {
+                    # code...
+                }
+
                 $vehicle = Vehicle::create($request->all());
 
+                $images = ImageService::saveMultipleImages($request,'image', '/vehicle/images/'.$vehicle->id);
+                if ($images) {
+                    foreach ($images as $key => $value) {
+                        VhImages::create([
+                            'vehicle_id' => $vehicle->id,
+                            'full_url' => $value['full_url'],
+                            'file' => $value['file'],
+                        ]);
+                     }
+                }
+
+                $cover_image = ImageService::saveImage($request,'cover_image', '/vehicle/images/'.$vehicle->id.'/cover_images');
+                if ($cover_image) {
+                    $vehicle->update([
+                        'cover_image_file' => $cover_image['file'],
+                        'cover_image_full_url' => $cover_image['full_url'],
+                    ]);
+                }
                 return $vehicle;
             });
 

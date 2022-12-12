@@ -31,7 +31,8 @@ class CreateVehiclesTable extends Migration
             $table->string('chassis_no');
             $table->string('displacement');
             $table->string('grade');
-            $table->string('cover_image');
+            $table->string('cover_image_full_url')->nullable();
+            $table->string('cover_image_file')->nullable();
             $table->text('description');
             $table->text('private_note');
             $table->string('sup_name');

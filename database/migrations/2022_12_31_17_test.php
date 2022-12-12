@@ -13,8 +13,9 @@ class Test extends Migration
      */
     public function up()
     {
-    //    Schema::table('customers', function (Blueprint $table) {
-    //         $table->dropColumn('isActive');
+    //     Schema::table('vehicles', function (Blueprint $table) {
+    //         $table->dropColumn('cover_image_full_url');
+    //         $table->dropColumn('cover_image_file');
     //    });
     }
 
@@ -25,8 +26,8 @@ class Test extends Migration
      */
     public function down()
     {
-    //    Schema::table('customers', function (Blueprint $table) {
-    //         $table->boolean('isActive')->default(true);
+    //     Schema::table('contents', function (Blueprint $table) {
+    //         $table->dropColumn('contents');
     //    });
     }
 }

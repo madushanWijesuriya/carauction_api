@@ -16,7 +16,8 @@ class CreateVhImagesTable extends Migration
         Schema::create('vh_images', function (Blueprint $table) {
             $table->id();
             $table->integer('vehicle_id');
-            $table->string('url');
+            $table->string('full_url');
+            $table->string('file');
             $table->timestamps();
         });
     }

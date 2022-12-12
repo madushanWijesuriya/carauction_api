@@ -302,7 +302,7 @@
 										},
 										{
 											"key": "isUsed",
-											"value": "true",
+											"value": "1",
 											"type": "text"
 										},
 										{
@@ -351,27 +351,12 @@
 											"type": "text"
 										},
 										{
-											"key": "images[0]",
+											"key": "image[0]",
 											"type": "file",
 											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_075503.png"
 										},
 										{
-											"key": "images[1]",
-											"type": "file",
-											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_075503.png"
-										},
-										{
-											"key": "images[2]",
-											"type": "file",
-											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_075503.png"
-										},
-										{
-											"key": "images[3]",
-											"type": "file",
-											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_075503.png"
-										},
-										{
-											"key": "images[4]",
+											"key": "image[1]",
 											"type": "file",
 											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_075503.png"
 										}
@@ -2182,6 +2167,50 @@
 										{
 											"key": "id",
 											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "contents",
+					"item": [
+						{
+							"name": "get",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/guest/content/country/:name\n",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"guest",
+										"content",
+										"country",
+										":name\n"
+									],
+									"variable": [
+										{
+											"key": "name\n",
+											"value": "United Kingdom"
 										}
 									]
 								}

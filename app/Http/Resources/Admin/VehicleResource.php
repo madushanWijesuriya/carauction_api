@@ -8,6 +8,7 @@ use App\Models\VhDriveTypes;
 use App\Models\VhExteriorColor;
 use App\Models\VhFeatures;
 use App\Models\VhFuelTypes;
+use App\Models\VhImages;
 use App\Models\VhMaker;
 use App\Models\VhModel;
 use App\Models\VhStatus;
@@ -38,6 +39,7 @@ class VehicleResource extends JsonResource
         $response['fuel_type_id'] = VhFuelTypes::find($response['fuel_type_id']);
         $response['exterior_color_id'] = VhExteriorColor::find($response['exterior_color_id']);
         $response['feature_id'] = VhFeatures::find($response['feature_id']);
+        $response['images'] = VhImages::where('vehicle_id', $response['id'])->get();
         return $response;
     }
 }

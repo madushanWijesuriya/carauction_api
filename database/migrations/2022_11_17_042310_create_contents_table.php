@@ -17,8 +17,8 @@ class CreateContentsTable extends Migration
             $table->id();
             $table->string('key');
             $table->integer('page_id');
-            $table->string('contents');
-            $table->json('data');
+            $table->text('contents');
+            $table->json('data')->nullable();
             $table->timestamps();
         });
     }
