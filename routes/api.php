@@ -37,6 +37,8 @@ Route::prefix('resources')->group(function () {
     Route::get('/features',[ResourceController::class,'getFeaturesList']);
     Route::get('/countries',[ResourceController::class,'getCountriesList']);
     Route::get('/roles',[ResourceController::class,'getRoleList']);
+    Route::get('/contents',[ContentController::class, 'getContentNames']);
+
 });
 
 //======Staff Routes==================================================================//

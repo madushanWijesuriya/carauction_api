@@ -43,6 +43,10 @@ class ContentController extends Controller
 
             return JsonResource::collection($result);
     }
+
+    public function getContentNames(Request $request){
+        return JsonResource::collection(QueryBuilder::for(Content::select('id','key'))->get());
+    }
     
     public function update(Request $request, $id){
         try{
