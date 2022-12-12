@@ -135,7 +135,7 @@ class StaffController extends Controller
     public function destroy($id)
     {
         try{
-            $vehicle = Vehicle::findOrFail($id);
+            $vehicle = Staff::findOrFail($id);
             $vehicle->delete();
             return response()->json(['message' => 'Successfully Deleted'],200);
         }catch(Exception $e){

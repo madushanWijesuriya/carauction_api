@@ -10,4 +10,8 @@ class VhModel extends Model
     use HasFactory;
     protected $fillable = ['name'];
 
+    public function vehicle()
+    {
+        return $this->hasMany(Vehicle::class, 'make_id', 'id');
+    }
 }
