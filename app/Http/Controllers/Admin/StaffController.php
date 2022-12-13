@@ -75,7 +75,7 @@ class StaffController extends Controller
             ]);
 
             $role = Role::find($request->role_id)->name;
-            $user->assignRole($role);
+            $user->syncRoles([$role]);
 
              return response()->json([
                 'status' => true,
@@ -118,7 +118,7 @@ class StaffController extends Controller
     
             $user = Staff::find($id);
             $user->update($request->all());
-            $user->assignRole('Admin');
+            $user->syncRoles([Role::find($request->role_id)->name]);
 
              return response()->json([
                 'status' => true,

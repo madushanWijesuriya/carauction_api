@@ -20,4 +20,8 @@ class Inquery extends Model
         'mobile_no',
         'message',
     ];
+    public function vehicle()
+    {
+        return $this->belongsTo(Vehicle::class,'vehicle_id','id');
+    }
 }

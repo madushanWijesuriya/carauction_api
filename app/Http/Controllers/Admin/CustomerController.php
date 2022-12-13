@@ -26,7 +26,7 @@ class CustomerController extends Controller
         $query = Customer::select('*');
         
         $customers = QueryBuilder::for($query)
-            ->allowedFilters(['name','email','country_id'])
+            ->allowedFilters(['name','email','country_id', 'isActive'])
             ->allowedSorts(['name','email','country_id']);
     
             if( !$request->has('noPagination')) {

@@ -25,4 +25,8 @@ class Vehicle extends Model
     {
         return $this->belongsTo(VhBodyType::class,'body_type_id','id');
     }
+    public function inqueries()
+    {
+        return $this->hasMany(Inquery::class,'vehicle_id','id');
+    }
 }

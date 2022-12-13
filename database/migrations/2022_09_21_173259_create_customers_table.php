@@ -22,6 +22,7 @@ class CreateCustomersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('isActive')->default(true);
+            $table->boolean('isNewsSub')->default(false);
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
