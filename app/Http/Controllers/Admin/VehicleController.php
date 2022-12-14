@@ -64,7 +64,7 @@ class VehicleController extends Controller
 
                 $vehicle = Vehicle::create($request->all());
 
-                if (env('APP_ENV') == 'local') {
+                //if (env('APP_ENV') == 'local') {
                     $images = ImageService::saveMultipleImages($request,'image', '/vehicle/images/'.$vehicle->id);
                     if ($images) {
                         foreach ($images as $key => $value) {
@@ -82,7 +82,7 @@ class VehicleController extends Controller
                             'cover_image_full_url' => $cover_image['full_url'],
                         ]);
                     }
-                }
+                //}
                 return $vehicle;
             });
 
