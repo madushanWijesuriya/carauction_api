@@ -29,7 +29,12 @@ class InqueryMail extends Mailable
     public function build()
     {
         $details = $this->details;
-        return $this->subject($details['subject'])
-                    ->view('inqueryEmail',compact('details'));
+        $mail = $this->subject($details['subject']);
+
+        foreach ($details['attachment'] as $key => $file) {
+            $mail->attach($file);
+        }
+        return $mail->view('inqueryEmail',compact('details'));
     }
+                    
 }
