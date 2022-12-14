@@ -1341,6 +1341,56 @@
 							"response": []
 						},
 						{
+							"name": "show",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/staff/inquery/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"inquery",
+										":id"
+									],
+									"query": [
+										{
+											"key": "filter[name]",
+											"value": "john",
+											"disabled": true
+										},
+										{
+											"key": "noPagination",
+											"value": "true",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "reply customer",
 							"protocolProfileBehavior": {
 								"disabledSystemHeaders": {}
@@ -2265,7 +2315,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{base_url}}/api/guest/vehicle?filter[name]=john&filter[email]=gmail\n",
+									"raw": "{{base_url}}/api/guest/vehicle?paginate=4",
 									"host": [
 										"{{base_url}}"
 									],
@@ -2277,11 +2327,22 @@
 									"query": [
 										{
 											"key": "filter[name]",
-											"value": "john"
+											"value": "john",
+											"disabled": true
 										},
 										{
 											"key": "filter[email]",
-											"value": "gmail\n"
+											"value": "gmail\n",
+											"disabled": true
+										},
+										{
+											"key": "noPagination",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "paginate",
+											"value": "4"
 										}
 									]
 								}
