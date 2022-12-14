@@ -65,9 +65,10 @@ class InqueryController extends Controller
             return InqueryResource::collection($vehicles);
     }
 
-    public function update(UpdateVehicleRequest $request, $id)
+    public function show($id)
     {
-    
+        $inquery = Inquery::findOrFail($id);
+        return new InqueryResource($inquery);
     }
 
     public function sendReply(Request $request)
