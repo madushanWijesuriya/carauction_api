@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateVehicleRequest;
 use App\Http\Requests\UpdateVehicleRequest;
 use App\Http\Resources\Admin\InqueryResource;
+use App\Http\Resources\Admin\NewsLetterResouce;
 use App\Http\Resources\Admin\VehicleCollection;
 use App\Http\Resources\Admin\VehicleResource;
 use App\Mail\NewLetterMail;
@@ -35,43 +36,30 @@ class NewsLetterController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Inquery::select('*');
+        $query = NewsLetter::select('id','name','subject','created_at','updated_at');
         
-        $vehicles = QueryBuilder::for($query)
+        $newsLetters = QueryBuilder::for($query)
             ->allowedFilters(['name',
-            'type',
-            'vehicle_id',
-            'country_id',
-            'email',
-            'cell_no',
-            'port_name',
-            'mobile_no',
-            'message'])
+            'name',
+        'subject'])
             ->allowedSorts(['name',
-            'type',
-            'vehicle_id',
-            'country_id',
-            'email',
-            'cell_no',
-            'port_name',
-            'mobile_no',
-            'message']);
+            'name',
+        'subject']);
     
             if( !$request->has('noPagination')) {
-                $vehicles = $vehicles->paginate($request['paginate'] <= 50 ? $request['paginate'] : null);
+                $newsLetters = $newsLetters->paginate($request['paginate'] <= 50 ? $request['paginate'] : null);
             } else {
-                $vehicles = $vehicles->get();
+                $newsLetters = $newsLetters->get();
             }
 
-            return InqueryResource::collection($vehicles);
+            return NewsLetterResouce::collection($newsLetters);
     }
 
     public function store(Request $request){
         try{
             $result = DB::transaction(function () use ($request) {
-                
                 $newsLetter = NewsLetter::create($request->all());
-
+                $newsLetter->update(['html_content' => view('welcome')->render()]);
                 return $newsLetter;
             });
             if($result){

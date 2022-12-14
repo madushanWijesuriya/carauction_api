@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateVehicleRequest;
 use App\Http\Resources\Admin\InqueryResource;
 use App\Http\Resources\Admin\VehicleCollection;
 use App\Http\Resources\Admin\VehicleResource;
+use App\Mail\InqueryMail;
+use App\Models\Customer;
 use App\Models\Inquery;
 use App\Models\Vehicle;
 use App\Models\VhBodyType;
@@ -25,6 +27,7 @@ use App\Services\ResponseGenerator;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class InqueryController extends Controller
@@ -69,6 +72,20 @@ class InqueryController extends Controller
 
     public function sendReply(Request $request)
     {
-        
+        try{
+
+            $inquery = Inquery::findOrFail($request->inquery_id);
+            if ($inquery) {
+                $details = [
+                    'subject' => $request->subject,
+                    'body' => $request->body,
+                    'attachment' => $request->file('attachment')
+                ];
+                Mail::to('shanwijesuriya.madushan@gmail.com')->send(new InqueryMail($details));
+            }
+            return response()->json(['message' => 'Successfully sent'],200);
+        }catch(Exception $e){
+            return response()->json(['message' => $e->getMessage()],500);
+        }
     }
 }
