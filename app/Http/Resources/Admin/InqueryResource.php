@@ -18,8 +18,22 @@ class InqueryResource extends JsonResource
      */
     public function toArray($request)
     {
+        $relations = [
+            'make_id',
+            'model_id',
+            'body_type_id',
+            'transmission_id',
+            'inqueries',
+            'images',
+            'streeing_id',
+            'door_type_id',
+            'driver_type_id',
+            'fuel_type_id',
+            'exterior_color_id',
+            'feature_id'
+        ];
         $response = parent::toArray($request);
-        $response['vehicle_id'] = Vehicle::find($response['vehicle_id']);;
+        $response['vehicle_id'] = Vehicle::find($response['vehicle_id'])->load($relations);
         $response['country_id'] = Country::find($response['country_id']);
         return $response;
     }

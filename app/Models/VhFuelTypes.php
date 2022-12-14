@@ -10,4 +10,8 @@ class VhFuelTypes extends Model
     use HasFactory;
     protected $fillable = ['name'];
 
+    public function vehicle()
+    {
+        return $this->hasMany(Vehicle::class, 'fuel_type_id', 'id');
+    }
 }

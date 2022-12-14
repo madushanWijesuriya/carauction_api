@@ -10,4 +10,8 @@ class VhFeatures extends Model
     use HasFactory;
     protected $fillable = ['name'];
 
+    public function vehicle()
+    {
+        return $this->hasMany(Vehicle::class, 'feature_id', 'id');
+    }
 }

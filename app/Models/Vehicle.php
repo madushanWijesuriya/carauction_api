@@ -17,7 +17,15 @@ class Vehicle extends Model
     {
         return $this->belongsTo(VhMaker::class,'make_id','id');
     }
+    public function make_id()
+    {
+        return $this->belongsTo(VhMaker::class,'make_id','id');
+    }
     public function model()
+    {
+        return $this->belongsTo(VhModel::class,'model_id','id');
+    }
+    public function model_id()
     {
         return $this->belongsTo(VhModel::class,'model_id','id');
     }
@@ -25,8 +33,76 @@ class Vehicle extends Model
     {
         return $this->belongsTo(VhBodyType::class,'body_type_id','id');
     }
+    public function body_type_id()
+    {
+        return $this->belongsTo(VhBodyType::class,'body_type_id','id');
+    }
+    public function status_id()
+    {
+        return $this->belongsTo(VhStatus::class,'status_id','id');
+    }
+    public function transmission()
+    {
+        return $this->belongsTo(VhTransmission::class,'transmission_id','id');
+    }
+    public function transmission_id()
+    {
+        return $this->belongsTo(VhTransmission::class,'transmission_id','id');
+    }
     public function inqueries()
     {
         return $this->hasMany(Inquery::class,'vehicle_id','id');
+    }
+    public function images()
+    {
+        return $this->hasMany(VhImages::class,'vehicle_id','id');
+    }
+    public function streeing()
+    {
+        return $this->belongsTo(VhStreeing::class,'streeing_id','id');
+    }
+    public function streeing_id()
+    {
+        return $this->belongsTo(VhStreeing::class,'streeing_id','id');
+    }
+    public function doorType()
+    {
+        return $this->belongsTo(VhDoorTypes::class,'door_type_id','id');
+    }
+    public function door_type_id()
+    {
+        return $this->belongsTo(VhDoorTypes::class,'door_type_id','id');
+    }
+    public function driverType()
+    {
+        return $this->belongsTo(VhDriveTypes::class,'driver_type_id','id');
+    }
+    public function driver_type_id()
+    {
+        return $this->belongsTo(VhDriveTypes::class,'driver_type_id','id');
+    }
+    public function fuelType()
+    {
+        return $this->belongsTo(VhFuelTypes::class,'fuel_type_id','id');
+    }
+    public function fuel_type_id()
+    {
+        return $this->belongsTo(VhFuelTypes::class,'fuel_type_id','id');
+    }
+    public function colors()
+    {
+        return $this->belongsTo(VhExteriorColor::class,'exterior_color_id','id');
+    }
+    public function exterior_color_id()
+    {
+        return $this->belongsTo(VhExteriorColor::class,'exterior_color_id','id');
+    }
+    public function features()
+    {
+        return $this->belongsTo(VhFeatures::class,'feature_id','id');
+    }
+    public function feature_id()
+    {
+        return $this->belongsTo(VhFeatures::class,'feature_id','id');
     }
 }

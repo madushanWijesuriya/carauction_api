@@ -9,5 +9,8 @@ class VhImages extends Model
 {
     use HasFactory;
     protected $fillable = ['vehicle_id','full_url', 'file'];
-
+    public function vehicle()
+    {
+        return $this->belongsTo(Vehicle::class,'vehicle_id','id');
+    }
 }

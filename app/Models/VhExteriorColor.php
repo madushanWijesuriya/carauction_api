@@ -10,4 +10,8 @@ class VhExteriorColor extends Model
     use HasFactory;
     protected $fillable = ['name'];
 
+    public function vehicle()
+    {
+        return $this->hasMany(Vehicle::class, 'exterior_color_id', 'id');
+    }
 }
