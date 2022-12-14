@@ -40,6 +40,7 @@ Route::prefix('resources')->group(function () {
     Route::get('/countries',[ResourceController::class,'getCountriesList']);
     Route::get('/roles',[ResourceController::class,'getRoleList']);
     Route::get('/contents',[ContentController::class, 'getContentNames']);
+    Route::get('/newsLetters',[ResourceController::class, 'getNewsLettersList']);
 
 });
 

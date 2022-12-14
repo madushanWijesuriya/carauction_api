@@ -59,11 +59,26 @@ class NewsLetterController extends Controller
         try{
             $result = DB::transaction(function () use ($request) {
                 $newsLetter = NewsLetter::create($request->all());
-                $newsLetter->update(['html_content' => view('welcome')->render()]);
+                $newsLetter->update($request->all());
                 return $newsLetter;
             });
             if($result){
                 return response()->json(['message' => 'Successfully Added'],200);
+            }
+        }catch(Exception $e){
+            return response()->json(['message' => $e->getMessage()],500);
+        }
+    }
+
+    public function update(Request $request, $id){
+        try{
+            $result = DB::transaction(function () use ($request, $id) {
+                $newsLetter = NewsLetter::find($id);
+                $newsLetter->update($request->all());
+                return $newsLetter;
+            });
+            if($result){
+                return response()->json(['message' => 'Successfully updated'],200);
             }
         }catch(Exception $e){
             return response()->json(['message' => $e->getMessage()],500);

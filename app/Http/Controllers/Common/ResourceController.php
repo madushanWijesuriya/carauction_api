@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Common;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
+use App\Models\NewsLetter;
 use App\Models\VhBodyType;
 use App\Models\VhDoorTypes;
 use App\Models\VhDriveTypes;
@@ -62,5 +63,9 @@ class ResourceController extends Controller
 
     public function getRoleList(){
         return response()->json(['data' => Role::select('id','name')->get()]);
+    }
+
+    public function getNewsLettersList(){
+        return response()->json(['data' => NewsLetter::select('id','name')->get()]);
     }
 }
