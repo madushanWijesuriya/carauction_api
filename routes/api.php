@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\NewsLetterController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Customer\Auth\AuthController;
 use App\Http\Controllers\Customer\Auth\InqueryController;
+use App\Http\Controllers\Customer\Auth\NewsLetterController as AuthNewsLetterController;
 use App\Http\Controllers\Guest\ContentController as GuestContentController;
 use App\Http\Controllers\Guest\InqueryController as GuestInqueryController;
 use App\Http\Controllers\Guest\VehicleController as GuestVehicleController;
@@ -107,6 +108,10 @@ Route::middleware(['auth:sanctum', 'abilities:jwt-client'])->get('/customer/user
 Route::middleware(['auth:sanctum', 'abilities:jwt-client'])->prefix('customer')->group(function () {
     
     Route::resources(['inquery' => InqueryController::class]);
+
+    Route::post('/newsLetter/subscribe',[AuthNewsLetterController::class, 'subscribeForNewsLetter']);
+
+    Route::resources(['newsLetter' => AuthNewsLetterController::class]);
 });
 
 

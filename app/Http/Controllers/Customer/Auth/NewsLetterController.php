@@ -17,13 +17,13 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\DB;
 
-class InqueryController extends Controller
+class NewsLetterController extends Controller
 {
-    public function subscribeForNewsLetter(){
+    public function subscribeForNewsLetter(Request $request){
         try{
             $user = Customer::find(auth()->id());
             $user->update(['isNewsSub' => !$user->isNewsSub]);
-            return response()->json(['message' => 'Successfully Deleted'],200);
+            return response()->json(['message' => $user->isNewsSub ? 'Successfully Subscribed' : 'Successfully Unsubscribed' ],200);
         }catch(Exception $e){
             return response()->json(['message' => $e->getMessage()],500);
         }
