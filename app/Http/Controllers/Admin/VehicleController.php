@@ -265,12 +265,33 @@ class VehicleController extends Controller
         }
     }
 
-    public function update(UpdateVehicleRequest $request, $id)
+    public function vehicleUpdate(Request $request, $id)
     {
         try{
             $result = DB::transaction(function () use ($request,$id) {
                 $vehicle = Vehicle::findOrFail($id);
                 $vehicle->update($request->all());
+                $images = ImageService::saveMultipleImages($request,'image', '/vehicle/images/'.$vehicle->id);
+                
+                if ($images) {
+                    //delete current images
+                    VhImages::where('vehicle_id',$vehicle->id)->delete();
+
+                    foreach ($images as $key => $value) {
+                        VhImages::create([
+                            'vehicle_id' => $vehicle->id,
+                            'full_url' => $value['full_url'],
+                            'file' => $value['file'],
+                        ]);
+                     }
+                }
+                $cover_image = ImageService::saveImage($request,'cover_image', '/vehicle/images/'.$vehicle->id.'/cover_images');
+                if ($cover_image) {
+                    $vehicle->update([
+                        'cover_image_file' => $cover_image['file'],
+                        'cover_image_full_url' => $cover_image['full_url'],
+                    ]);
+                }
                 return $vehicle;
             });
 
