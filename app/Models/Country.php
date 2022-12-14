@@ -11,4 +11,9 @@ class Country extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function inqueries()
+    {
+        return $this->hasMany(Inquery::class, 'country_id', 'id');
+    }
 }

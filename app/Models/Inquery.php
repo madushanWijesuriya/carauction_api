@@ -24,4 +24,8 @@ class Inquery extends Model
     {
         return $this->belongsTo(Vehicle::class,'vehicle_id','id');
     }
+    public function country_id()
+    {
+        return $this->belongsTo(Country::class,'country_id','id');
+    }
 }

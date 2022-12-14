@@ -23,7 +23,6 @@ class InqueryResource extends JsonResource
             'model_id',
             'body_type_id',
             'transmission_id',
-            'inqueries',
             'images',
             'streeing_id',
             'door_type_id',
