@@ -15,6 +15,7 @@ use App\Models\VhModel;
 use App\Models\VhStatus;
 use App\Models\VhStreeing;
 use App\Models\VhTransmission;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Ramsey\Uuid\FeatureSet;
 
@@ -33,6 +34,7 @@ class VehicleResource extends JsonResource
         $vehicle = Vehicle::find($response['id']);
         $response['make_id'] = $vehicle->make;
         $response['model_id'] = $vehicle->model;
+        $response['model_id']['year'] = Carbon::parse($vehicle->model->created_at)->format('Y');
         $response['status_id'] = VhStatus::find($response['status_id']);
         $response['body_type_id'] = $vehicle->bodyType;
         $response['transmission_id'] = VhTransmission::find($response['transmission_id']);
