@@ -2,14 +2,19 @@
 
 namespace Database\Seeders;
 
+use App\Models\Country;
 use App\Models\Staff;
 use App\Models\User;
 use App\Models\VhBodyType;
+use App\Models\VhCountryFort;
 use App\Models\VhDoorTypes;
 use App\Models\VhDriveTypes;
+use App\Models\VhEngine;
 use App\Models\VhExteriorColor;
 use App\Models\VhFeatures;
+use App\Models\VhFort;
 use App\Models\VhFuelTypes;
+use App\Models\VhGearType;
 use App\Models\VhMakeModel;
 use App\Models\VhMaker;
 use App\Models\VhModel;
@@ -29,6 +34,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+            CountrySeeder::class,
+        ]);
         $make = [
             ['name' => 'Toyota'],
             ['name' => 'Audi'],
@@ -71,6 +79,9 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
+
+
+
         $status = [
             ['name' => 'Status1'],
             ['name' => 'Status2'],
@@ -171,8 +182,63 @@ class DatabaseSeeder extends Seeder
             VhFuelTypes::updateOrCreate($value);
         }
 
+        $engineTypes = [
+            ['name' => 'Engine-01'],
+            ['name' => 'Engine-02'],
+            ['name' => 'Engine-03'],
+            ['name' => 'Engine-04'],
+            ['name' => 'Engine-05']
+        ];
+        foreach ($engineTypes as $key => $value) {
+            VhEngine::updateOrCreate($value);
+        }
+
+        $gearBoxes = [
+            ['name' => 'gear-01'],
+            ['name' => 'gear-02'],
+            ['name' => 'gear-03'],
+            ['name' => 'gear-04'],
+            ['name' => 'gear-05']
+        ];
+        foreach ($gearBoxes as $key => $value) {
+            VhGearType::updateOrCreate($value);
+        }
+
+
+        
+        $forts = [
+            1 =>[
+                ['name' => 'AQUA'],
+                ['name' => 'AQUA G'],
+                ['name' => 'AQUA AAD'],
+                ['name' => 'AQUA Hybrid'],
+                ['name' => 'AQUA L']
+            ],
+            2 => [
+                ['name' => 'A3'],
+                ['name' => 'A6'],
+            ],
+            3 =>[
+                ['name' => 'Altra'],
+                ['name' => 'Every'],
+                ['name' => 'Carry Truck'],
+                ['name' => 'Solio'],
+                ['name' => 'Key']
+            ],
+        ];
+
+        foreach ($forts as $key => $values) {
+            foreach ($values as $index => $value) {
+                $country = Country::find($key)->first();
+                $fort = VhFort::updateOrCreate($value);
+                VhCountryFort::updateOrCreate([
+                    'country_id' => $country ->id,
+                    'fort_id' => $fort ? $fort->id : VhFort::create(['name' => $key])->id,
+                ]);
+            }
+        }
+
         $this->call([
-            CountrySeeder::class,
             PermissionSeeder::class
         ]);
     }

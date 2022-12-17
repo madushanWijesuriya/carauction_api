@@ -23,6 +23,17 @@ class CreateCustomersTable extends Migration
             $table->string('password');
             $table->boolean('isActive')->default(true);
             $table->boolean('isNewsSub')->default(false);
+
+            $table->enum('type', ['individual','car_dealer'])->default('individual');
+            $table->string('company_name')->nullable();
+            $table->string('company_address')->nullable();
+            $table->string('company_email')->nullable();
+            $table->string('city')->nullable();
+            $table->string('requested_car')->nullable();
+            $table->string('port')->nullable();
+            $table->string('contact_person')->nullable();
+            $table->string('contact_no')->nullable();
+
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

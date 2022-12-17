@@ -26,7 +26,16 @@ class Customer extends Authenticatable implements MustVerifyEmail
         'password',
         'country_id',
         'isActive',
-        'isNewsSub'
+        'isNewsSub',
+        'type',
+        'company_name',
+        'company_address',
+        'company_email',
+        'city',
+        'requested_car',
+        'port',
+        'contact_person',
+        'contact_no',
     ];
 
     /**
