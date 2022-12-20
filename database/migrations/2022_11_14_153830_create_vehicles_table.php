@@ -28,7 +28,7 @@ class CreateVehiclesTable extends Migration
             $table->integer('feature_id');
             $table->date('make_at');
             $table->double('fob_price');
-            $table->string('chassis_no');
+            $table->string('chassis_no')->unique();
             $table->string('displacement');
             $table->string('grade');
             $table->string('cover_image_full_url')->nullable();
@@ -42,10 +42,13 @@ class CreateVehiclesTable extends Migration
             $table->boolean('isUsed')->default(true);
             $table->double('mileage');
 
+
             $table->integer('engine_id')->nullable();
             $table->integer('shipping_country_id')->nullable();
             $table->integer('fort_id')->nullable();
             $table->integer('gear_box_id')->nullable();
+            $table->string('lot_number')->nullable();
+            $table->integer('seats')->nullable();
             $table->integer('odometer')->nullable();
 
             $table->softDeletes();

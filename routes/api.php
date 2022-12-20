@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\InqueryController as AdminInqueryController;
 use App\Http\Controllers\Admin\NewsLetterController;
+use App\Http\Controllers\Admin\ShippingDocController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Customer\Auth\AuthController;
 use App\Http\Controllers\Customer\Auth\InqueryController;
@@ -90,6 +91,7 @@ Route::middleware(['auth:sanctum', 'abilities:jwt-staff'])->prefix('staff')->gro
     Route::post('/news-letter/send',[NewsLetterController::class, 'sendNewsLetter']);
 
     Route::resources(['news-letter' => NewsLetterController::class]);
+    Route::resources(['shipping' => ShippingDocController::class]);
 
 
 
