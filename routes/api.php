@@ -71,6 +71,11 @@ Route::middleware(['auth:sanctum', 'abilities:jwt-staff'])->prefix('staff')->gro
     Route::post('/vehicle/fuel-types/quickAdd', [VehicleController::class, 'storeFuelTypes'])->name('vehicle.storeFuelTypes.store');
     Route::post('/vehicle/exterior-colors/quickAdd', [VehicleController::class, 'storeExteriorColors'])->name('vehicle.storeExteriorColors.store');
     Route::post('/vehicle/features/quickAdd', [VehicleController::class, 'storeFeatures'])->name('vehicle.storeFeatures.store');
+        
+    Route::post('/vehicle/engine/quickAdd', [VehicleController::class, 'storeEngine'])->name('vehicle.storeEngine.store');
+    Route::post('/vehicle/gear/quickAdd', [VehicleController::class, 'storeGear'])->name('vehicle.storeGear.store');
+    Route::post('/vehicle/fort/quickAdd', [VehicleController::class, 'storeFort'])->name('vehicle.storeFort.store');
+    Route::post('/vehicle/vehicleUpdate/{id}', [VehicleController::class, 'vehicleUpdate'])->name('vehicle.vehicleUpdate.update');
     
     Route::resources(['vehicle' => VehicleController::class]);
     

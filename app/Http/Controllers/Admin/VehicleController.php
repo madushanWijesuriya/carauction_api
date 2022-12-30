@@ -11,11 +11,15 @@ use App\Http\Resources\Admin\VehicleCollection;
 use App\Http\Resources\Admin\VehicleResource;
 use App\Models\Vehicle;
 use App\Models\VhBodyType;
+use App\Models\VhCountryFort;
 use App\Models\VhDoorTypes;
 use App\Models\VhDriveTypes;
+use App\Models\VhEngine;
 use App\Models\VhExteriorColor;
 use App\Models\VhFeatures;
+use App\Models\VhFort;
 use App\Models\VhFuelTypes;
+use App\Models\VhGearType;
 use App\Models\VhImages;
 use App\Models\VhMakeModel;
 use App\Models\VhMaker;
@@ -70,7 +74,7 @@ class VehicleController extends Controller
 
                 $vehicle = Vehicle::create($request->all());
 
-                if (env('APP_ENV') == 'local') {
+                // if (env('APP_ENV') == 'local') {
                     $images = ImageService::saveMultipleImages($request,'image', '/vehicle/images/'.$vehicle->id);
                     if ($images) {
                         foreach ($images as $key => $value) {
@@ -88,7 +92,7 @@ class VehicleController extends Controller
                             'cover_image_full_url' => $cover_image['full_url'],
                         ]);
                     }
-                }
+                // }
                 return $vehicle;
             });
 
@@ -99,7 +103,48 @@ class VehicleController extends Controller
             return response()->json(['message' => $e->getMessage()],500);
         }
     }
+    public function vehicleUpdate(UpdateVehicleRequest $request, $id)
+    {
+        try{
+            $result = DB::transaction(function () use ($request,$id) {
+                $isDeleted = ImageService::deleteImages($id, $request,'image', '/vehicle/images/'.$id);
+                if ($isDeleted) {
+                    $images = ImageService::saveMultipleImages($request,'image', '/vehicle/images/'.$id);
+                    if ($images) {
+                        foreach ($images as $key => $value) {
+                            VhImages::create([
+                                'vehicle_id' => $id,
+                                'full_url' => $value['full_url'],
+                                'file' => $value['file'],
+                            ]);
+                         }
+                    }
+                }
+                $isDeleted = ImageService::deleteImage($id, $request,'cover_image', '/vehicle/images/'.$id.'/cover_images');
+                if ($isDeleted) {
+                    $cover_image = ImageService::saveImage($request,'cover_image', '/vehicle/images/'.$id.'/cover_images');
+                    if ($cover_image) {
+                        Vehicle::find($id)->update([
+                            'cover_image_file' => $cover_image['file'],
+                            'cover_image_full_url' => $cover_image['full_url'],
+                        ]);
+                    }
+                }
 
+                $vehicle = Vehicle::findOrFail($id);
+                $vehicle->update($request->all());
+
+                
+                return $vehicle;
+            });
+
+            if($result){
+                return new VehicleResource($result);
+            }
+        }catch(Exception $e){
+            return response()->json(['message' => $e->getMessage()],500);
+        }
+    }
     public function show($id)
     {
         $vehicle = Vehicle::findOrFail($id);
@@ -270,18 +315,50 @@ class VehicleController extends Controller
             return response()->json(['message' => $e->getMessage()],500);
         }
     }
-
-    public function update(UpdateVehicleRequest $request, $id)
+    public function storeEngine(Request $request)
     {
         try{
-            $result = DB::transaction(function () use ($request,$id) {
-                $vehicle = Vehicle::findOrFail($id);
-                $vehicle->update($request->all());
-                return $vehicle;
+            $result = DB::transaction(function () use ($request) {
+                $model = VhEngine::create($request->all());
+
+                return $model;
             });
 
             if($result){
-                return new VehicleResource($result);
+                return response()->json(['message' => 'Successfully Added'],200);
+            }
+        }catch(Exception $e){
+            return response()->json(['message' => $e->getMessage()],500);
+        }
+    }
+    public function storeGear(Request $request)
+    {
+        try{
+            $result = DB::transaction(function () use ($request) {
+                $model = VhGearType::create($request->all());
+
+                return $model;
+            });
+
+            if($result){
+                return response()->json(['message' => 'Successfully Added'],200);
+            }
+        }catch(Exception $e){
+            return response()->json(['message' => $e->getMessage()],500);
+        }
+    }
+    public function storeFort(Request $request)
+    {
+        try{
+            $result = DB::transaction(function () use ($request) {
+                $fort = VhFort::create($request->all());
+                $countryFort = VhCountryFort::create(collect($request->all())->merge(['fort_id' => $fort->id])->toArray());
+
+                return $countryFort;
+            });
+
+            if($result){
+                return response()->json(['message' => 'Successfully Added'],200);
             }
         }catch(Exception $e){
             return response()->json(['message' => $e->getMessage()],500);
