@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\CustomFilters\DateRangeFilter;
+use App\Http\CustomFilters\SearchTextFilter;
 use App\Http\Requests\CreateVehicleRequest;
 use App\Http\Requests\UpdateVehicleRequest;
 use App\Http\Resources\Admin\VehicleCollection;
@@ -26,6 +28,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class VehicleController extends Controller
@@ -35,7 +38,10 @@ class VehicleController extends Controller
         $query = Vehicle::select('*');
         
         $vehicles = QueryBuilder::for($query)
-            ->allowedFilters(['make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'make_at', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price'])
+            ->allowedFilters([
+                AllowedFilter::custom('search_text', new SearchTextFilter),
+                AllowedFilter::custom('make_at', new DateRangeFilter),
+                'make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price'])
             ->allowedSorts(['id', 'make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'make_at', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price']);
     
             if( !$request->has('noPagination')) {

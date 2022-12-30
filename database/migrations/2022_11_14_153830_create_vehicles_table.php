@@ -49,7 +49,7 @@ class CreateVehiclesTable extends Migration
             $table->integer('gear_box_id')->nullable();
             $table->string('lot_number')->nullable();
             $table->integer('seats')->nullable();
-            $table->integer('odometer')->nullable();
+            // $table->integer('odometer')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

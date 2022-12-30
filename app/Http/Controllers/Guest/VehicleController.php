@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Http\CustomFilters\DateRangeFilter;
 use App\Http\CustomFilters\SearchTextFilter;
 use App\Http\Requests\CreateVehicleRequest;
 use App\Http\Requests\UpdateVehicleRequest;
@@ -21,11 +22,14 @@ use App\Models\VhModel;
 use App\Models\VhStreeing;
 use App\Models\VhTransmission;
 use App\Services\ResponseGenerator;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use Symfony\Component\Finder\Iterator\DateRangeFilterIterator;
 
 class VehicleController extends Controller
 {
@@ -36,7 +40,8 @@ class VehicleController extends Controller
         $vehicles = QueryBuilder::for($query)
             ->allowedFilters([
                 AllowedFilter::custom('search_text', new SearchTextFilter),
-                'make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'make_at', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price'])
+                AllowedFilter::custom('make_at', new DateRangeFilter),
+                'make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price'])
             ->allowedSorts(['id', 'make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'make_at', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price']);
     
             if( !$request->has('noPagination')) {

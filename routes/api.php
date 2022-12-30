@@ -39,8 +39,12 @@ Route::prefix('resources')->group(function () {
     Route::get('/exterior-colors',[ResourceController::class,'getExteriorColorsList']);
     Route::get('/features',[ResourceController::class,'getFeaturesList']);
     Route::get('/countries',[ResourceController::class,'getCountriesList']);
+    Route::get('/forts/{country}',[ResourceController::class,'getFortList']);
+
     Route::get('/roles',[ResourceController::class,'getRoleList']);
     Route::get('/contents',[ContentController::class, 'getContentNames']);
+    Route::get('/engine-types',[ResourceController::class, 'getEngineList']);
+    Route::get('/gears',[ResourceController::class, 'getGearsList']);
 
 });
 
