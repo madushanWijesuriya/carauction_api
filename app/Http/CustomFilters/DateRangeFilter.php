@@ -14,7 +14,12 @@ class DateRangeFilter implements Filter
     {
        if (strpos($value, ' - ')) {
         $dates = explode(' - ', $value);
-        $query->whereBetween('make_at', [Carbon::parse($dates[0])->startOfDay(), Carbon::parse($dates[1])->endOfDay()]);
+        if ($property === 'make_at')
+            $query->whereBetween('make_at', [Carbon::parse($dates[0])->startOfDay(), Carbon::parse($dates[1])->endOfDay()]);
+        else if ($property === 'eta')
+            $query->whereBetween('eta', [Carbon::parse($dates[0])->startOfDay(), Carbon::parse($dates[1])->endOfDay()]);
+        else if ($property === 'etd')
+            $query->whereBetween('etd', [Carbon::parse($dates[0])->startOfDay(), Carbon::parse($dates[1])->endOfDay()]);
        }
         // strpos($searchValue, ' - ');    
         // $query->whereBetween('make_at', )
