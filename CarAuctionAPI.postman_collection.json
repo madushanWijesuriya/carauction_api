@@ -19,7 +19,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"admina@gmail.com\",\r\n    \"password\": \"admin123\"\r\n}",
+									"raw": "{\r\n    \"email\":\"adminss@gmail.com\",\r\n    \"password\": \"admin123\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -151,7 +151,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{base_url}}/api/staff/vehicle?filter[name]=john&filter[email]=gmail\n",
+									"raw": "{{base_url}}/api/staff/vehicle?filter[search_text]",
 									"host": [
 										"{{base_url}}"
 									],
@@ -163,11 +163,22 @@
 									"query": [
 										{
 											"key": "filter[name]",
-											"value": "john"
+											"value": "john",
+											"disabled": true
 										},
 										{
 											"key": "filter[email]",
-											"value": "gmail\n"
+											"value": "gmail\n",
+											"disabled": true
+										},
+										{
+											"key": "filter[make_at]",
+											"value": "2010-10-21 - 2010-03-12",
+											"disabled": true
+										},
+										{
+											"key": "filter[search_text]",
+											"value": null
 										}
 									]
 								}
@@ -282,13 +293,8 @@
 											"type": "text"
 										},
 										{
-											"key": "chassis_no",
-											"value": "{{$randomPassword}}",
-											"type": "text"
-										},
-										{
 											"key": "make_at",
-											"value": "2022-09-22",
+											"value": "2022-09-30",
 											"type": "text"
 										},
 										{
@@ -297,29 +303,19 @@
 											"type": "text"
 										},
 										{
+											"key": "chassis_no",
+											"value": "{{$randomPassword}}",
+											"type": "text"
+										},
+										{
 											"key": "displacement",
 											"value": "{{$randomProductName}}",
-											"type": "text"
-										},
-										{
-											"key": "isUsed",
-											"value": "1",
-											"type": "text"
-										},
-										{
-											"key": "mileage",
-											"value": "10000000",
 											"type": "text"
 										},
 										{
 											"key": "grade",
 											"value": "A",
 											"type": "text"
-										},
-										{
-											"key": "cover_image",
-											"type": "file",
-											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_022835.png"
 										},
 										{
 											"key": "description",
@@ -337,19 +333,69 @@
 											"type": "text"
 										},
 										{
-											"key": "sup_price",
-											"value": "200000",
+											"key": "sup_url",
+											"value": "https://google.com",
 											"type": "text"
 										},
 										{
-											"key": "sup_url",
-											"value": "https://google.com",
+											"key": "sup_price",
+											"value": "200000",
 											"type": "text"
 										},
 										{
 											"key": "market_price",
 											"value": "3000000",
 											"type": "text"
+										},
+										{
+											"key": "isUsed",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "mileage",
+											"value": "10000000",
+											"type": "text"
+										},
+										{
+											"key": "engine_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "shipping_country_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "fort_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "gear_box_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "lot_number",
+											"value": " '323432'",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": " 'sdasds'",
+											"type": "text"
+										},
+										{
+											"key": "seats",
+											"value": " 3",
+											"type": "text"
+										},
+										{
+											"key": "cover_image",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_022835.png"
 										},
 										{
 											"key": "image[0]",
@@ -818,12 +864,144 @@
 							"response": []
 						},
 						{
+							"name": "new quick add engine",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"{{$randomFileName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/engine/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"engine",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "new quick add gear",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"{{$randomFileName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/gear/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"gear",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "new quick add fort",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"{{$randomFileName}}\",\r\n    \"country_id\" : 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/fort/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"fort",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "update",
 							"request": {
 								"auth": {
 									"type": "noauth"
 								},
-								"method": "PUT",
+								"method": "POST",
 								"header": [
 									{
 										"key": "X-Requested-With",
@@ -832,16 +1010,177 @@
 									}
 								],
 								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"make_id\": 1,\r\n    \"model_id\": 1,\r\n    \"status_id\": 1,\r\n    \"body_type_id\": 1,\r\n    \"transmission_id\": 1,\r\n    \"streeing_id\": 1,\r\n    \"door_type_id\":1 ,\r\n    \"driver_type_id\": 1,\r\n    \"fuel_type_id\": 1,\r\n    \"exterior_color_id\": 1,\r\n    \"feature_id\": 1,\r\n    \"chassis_no\":\"sssssssaaaaaasasas\",\r\n    \"make_at\": \"2022-09-22\",\r\n    \"fob_price\": 1000,\r\n    \"displacement\": \"sssssss\",\r\n    \"isUsed\": true,\r\n    \"mileage\": 10000000,\r\n    \"grade\": \"A\",\r\n    \"cover_image\": \"https://jamex.co.jp/images/57369_4750_f08421.jpg\",\r\n    \"description\": \"sssssssssssssssssssssssssssssssssss\",\r\n    \"private_note\": \"1\",\r\n    \"sup_name\": \"sup10\",\r\n    \"sup_price\": 100000,\r\n    \"sup_url\": \"https://google.com\",\r\n    \"market_price\" :200000\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "make_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "model_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "status_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "body_type_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "transmission_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "streeing_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "door_type_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "driver_type_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "fuel_type_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "exterior_color_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "feature_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "make_at",
+											"value": "2022-09-30",
+											"type": "text"
+										},
+										{
+											"key": "fob_price",
+											"value": "1000",
+											"type": "text"
+										},
+										{
+											"key": "chassis_no",
+											"value": "{{$randomPassword}}",
+											"type": "text"
+										},
+										{
+											"key": "displacement",
+											"value": "{{$randomProductName}}",
+											"type": "text"
+										},
+										{
+											"key": "grade",
+											"value": "A",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "{{$randomLoremParagraph}}",
+											"type": "text"
+										},
+										{
+											"key": "private_note",
+											"value": "{{$randomLoremParagraph}}",
+											"type": "text"
+										},
+										{
+											"key": "sup_name",
+											"value": "{{$randomCompanyName}}",
+											"type": "text"
+										},
+										{
+											"key": "sup_url",
+											"value": "https://google.com",
+											"type": "text"
+										},
+										{
+											"key": "sup_price",
+											"value": "200000",
+											"type": "text"
+										},
+										{
+											"key": "market_price",
+											"value": "3000000",
+											"type": "text"
+										},
+										{
+											"key": "isUsed",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "mileage",
+											"value": "10000000",
+											"type": "text"
+										},
+										{
+											"key": "engine_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "shipping_country_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "fort_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "gear_box_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "lot_number",
+											"value": " '323432'",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": " 'sdasds'",
+											"type": "text"
+										},
+										{
+											"key": "seats",
+											"value": " 3",
+											"type": "text"
+										},
+										{
+											"key": "image[0]",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_075503.png"
+										},
+										{
+											"key": "cover_image",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_112458.png"
 										}
-									}
+									]
 								},
 								"url": {
-									"raw": "{{base_url}}/api/staff/vehicle/:id",
+									"raw": "{{base_url}}/api/staff/vehicle/vehicleUpdate/:id",
 									"host": [
 										"{{base_url}}"
 									],
@@ -849,6 +1188,7 @@
 										"api",
 										"staff",
 										"vehicle",
+										"vehicleUpdate",
 										":id"
 									],
 									"variable": [
@@ -1315,7 +1655,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{base_url}}/api/staff/inquery",
+									"raw": "{{base_url}}/api/staff/inquery?filter[driver_type_id]=1",
 									"host": [
 										"{{base_url}}"
 									],
@@ -1334,6 +1674,10 @@
 											"key": "noPagination",
 											"value": "true",
 											"disabled": true
+										},
+										{
+											"key": "filter[driver_type_id]",
+											"value": "1"
 										}
 									]
 								}
@@ -1555,6 +1899,229 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"subject\": \"Hi News Letter\",\r\n    \"html_content\":\"sssssssss\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/news-letter/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"news-letter",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Shipping Doc",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"subject\": \"Hi News Letter\",\r\n    \"html_content\":\"sssssssss\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/shipping",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"shipping"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "vehicle_id",
+											"value": " 2",
+											"type": "text"
+										},
+										{
+											"key": "country_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "customer_id",
+											"value": " 2",
+											"type": "text"
+										},
+										{
+											"key": "etd",
+											"value": " 2010-10-21",
+											"type": "text"
+										},
+										{
+											"key": "eta",
+											"value": " 2010-10-21",
+											"type": "text"
+										},
+										{
+											"key": "pol",
+											"value": " \"sdasdsd\"",
+											"type": "text"
+										},
+										{
+											"key": "pod",
+											"value": " \"sdasdsdas\"",
+											"type": "text"
+										},
+										{
+											"key": "consignee_name",
+											"value": " \"dsadssasd\"",
+											"type": "text"
+										},
+										{
+											"key": "yard_location",
+											"value": " \"dsadsadsads\"",
+											"type": "text"
+										},
+										{
+											"key": "doc[0]",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot (1).png"
+										},
+										{
+											"key": "doc[1]",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot (1).png"
+										},
+										{
+											"key": "doc[2]",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot (3).png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/shipping/update/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"shipping",
+										"update",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/staff/shipping?filter[vehicle_name]",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"shipping"
+									],
+									"query": [
+										{
+											"key": "filter[eta]",
+											"value": "2010-10-21 - 2010-03-12",
+											"disabled": true
+										},
+										{
+											"key": "filter[etd]",
+											"value": "2010-10-21 - 2010-03-12",
+											"disabled": true
+										},
+										{
+											"key": "filter[vehicle_name]",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
@@ -1573,7 +2140,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"1madushan@gmail.com\",\r\n    \"password\": \"11111111\"\r\n}",
+									"raw": "{\r\n    \"email\":\"customer01@gmail.com\",\r\n    \"password\": \"customer01@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1631,7 +2198,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"{{$randomFileName}}\",\r\n    \"email\":\"shanwijesuriya.madushan@gmail.com\",\r\n    \"password\":\"11111111\",\r\n    \"password_confirmation\":\"11111111\",\r\n    \"country_id\": 2,\r\n    \"isActive\" : 1\r\n}",
+									"raw": "{\r\n    \"name\":\"customer03\",\r\n    \"email\":\"customer03@gmail.com\",\r\n    \"password\":\"customer03@gmail.com\",\r\n    \"country_id\": 2,\r\n    \"type\": \"individual\",\r\n    \"company_name\": \"99x\",\r\n    \"company_address\": \"colombo 01\",\r\n    \"company_email\": \"99x.info@gmail.com\",\r\n    \"city\": \"nugegoda\",\r\n    \"requested_car\": \"i8\",\r\n    \"port\": \"colombo\",\r\n    \"contact_person\": \"{{$randomFirstName}} {{$randomLastName}}\",\r\n    \"contact_no\": \"0754825485\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1765,6 +2332,40 @@
 										"api",
 										"customer",
 										"inquery"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "News Letter",
+					"item": [
+						{
+							"name": "subscribe",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"vehicle_id\": \"1\",\r\n    \"country_id\": \"1\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"cell_no\": \"2312312312321\",\r\n    \"port_name\": \"colombo port\",\r\n    \"mobile_no\": \"231231231232\",\r\n    \"message\": \"{{$randomLoremParagraph}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/customer/newsLetter/subscribe",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"newsLetter",
+										"subscribe"
 									]
 								}
 							},
@@ -2165,6 +2766,111 @@
 							"response": []
 						},
 						{
+							"name": "get forts",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/api/resources/forts/:country",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"forts",
+										":country"
+									],
+									"variable": [
+										{
+											"key": "country",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get engine-types",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/engine-types",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"engine-types"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get gears",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/gears",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"gears"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "get roles",
 							"protocolProfileBehavior": {
 								"disabledSystemHeaders": {}
@@ -2221,6 +2927,37 @@
 										"api",
 										"resources",
 										"contents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get news letters",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/newsLetters",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"newsLetters"
 									]
 								}
 							},
@@ -2315,7 +3052,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{base_url}}/api/guest/vehicle?paginate=4",
+									"raw": "{{base_url}}/api/guest/vehicle?filter[make_at]=2022-09-21 - 2022-09-23",
 									"host": [
 										"{{base_url}}"
 									],
@@ -2337,12 +3074,27 @@
 										},
 										{
 											"key": "noPagination",
-											"value": null,
+											"value": "",
 											"disabled": true
 										},
 										{
 											"key": "paginate",
-											"value": "4"
+											"value": "4",
+											"disabled": true
+										},
+										{
+											"key": "filter[search_text]",
+											"value": "sadsads",
+											"disabled": true
+										},
+										{
+											"key": null,
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "filter[make_at]",
+											"value": "2022-09-21 - 2022-09-23"
 										}
 									]
 								}
