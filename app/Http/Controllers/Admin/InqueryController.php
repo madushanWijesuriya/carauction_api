@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\CustomFilters\InqueryVehicleFilter;
 use App\Http\Requests\CreateVehicleRequest;
 use App\Http\Requests\UpdateVehicleRequest;
 use App\Http\Resources\Admin\InqueryResource;
@@ -27,7 +28,9 @@ use App\Services\ResponseGenerator;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class InqueryController extends Controller
@@ -37,7 +40,19 @@ class InqueryController extends Controller
         $query = Inquery::select('*');
         
         $vehicles = QueryBuilder::for($query)
-            ->allowedFilters(['name',
+            ->allowedFilters([
+            AllowedFilter::custom('model_id', new InqueryVehicleFilter),
+            AllowedFilter::custom('make_id', new InqueryVehicleFilter),            
+            AllowedFilter::custom('status_id', new InqueryVehicleFilter),            
+            AllowedFilter::custom('body_type_id', new InqueryVehicleFilter),            
+            AllowedFilter::custom('transmission_id', new InqueryVehicleFilter),            
+            AllowedFilter::custom('streeing_id', new InqueryVehicleFilter),            
+            AllowedFilter::custom('door_type_id', new InqueryVehicleFilter),            
+            AllowedFilter::custom('driver_type_id', new InqueryVehicleFilter),            
+            AllowedFilter::custom('fuel_type_id', new InqueryVehicleFilter),            
+            AllowedFilter::custom('exterior_color_id', new InqueryVehicleFilter),            
+            AllowedFilter::custom('feature_id', new InqueryVehicleFilter),            
+            'name',
             'type',
             'vehicle_id',
             'country_id',
@@ -45,7 +60,7 @@ class InqueryController extends Controller
             'cell_no',
             'port_name',
             'mobile_no',
-            'message'])
+            'message',])
             ->allowedSorts(['name',
             'type',
             'vehicle_id',
@@ -71,6 +86,23 @@ class InqueryController extends Controller
         return new InqueryResource($inquery);
     }
 
+    public function store(Request $request){
+        try{
+            Log::info($request);
+            $inquery = Inquery::findOrFail($request->inquiry_id);
+            if ($inquery) {
+                $details = [
+                    'subject' => $request->subject,
+                    'body' => $request->body,
+                    'attachment' => $request->file('attachment')
+                ];
+                Mail::to('shanwijesuriya.madushan@gmail.com')->send(new InqueryMail($details));
+            }
+            return response()->json(['message' => 'Successfully sent'],200);
+        }catch(Exception $e){
+            return response()->json(['message' => $e->getMessage()],500);
+        }
+    }
     public function sendReply(Request $request)
     {
         try{

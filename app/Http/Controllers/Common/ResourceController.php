@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Common;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
+use App\Models\NewsLetter;
 use App\Models\VhBodyType;
 use App\Models\VhCountryFort;
 use App\Models\VhDoorTypes;
@@ -75,5 +76,9 @@ class ResourceController extends Controller
     }
     public function getGearsList(){
         return response()->json(['data' => VhGearType::select('id', 'name')->get()]);
+    }
+
+    public function getNewsLettersList(){
+        return response()->json(['data' => NewsLetter::select('id','name')->get()]);
     }
 }

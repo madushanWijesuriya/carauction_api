@@ -46,6 +46,7 @@ Route::prefix('resources')->group(function () {
     Route::get('/contents',[ContentController::class, 'getContentNames']);
     Route::get('/engine-types',[ResourceController::class, 'getEngineList']);
     Route::get('/gears',[ResourceController::class, 'getGearsList']);
+    Route::get('/newsLetters',[ResourceController::class, 'getNewsLettersList']);
 
 });
 

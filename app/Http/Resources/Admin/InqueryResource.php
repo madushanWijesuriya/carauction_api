@@ -34,6 +34,7 @@ class InqueryResource extends JsonResource
         $response = parent::toArray($request);
         $response['vehicle_id'] = Vehicle::find($response['vehicle_id'])->load($relations);
         $response['country_id'] = Country::find($response['country_id']);
+        $response['type'] = 'Guest';
         return $response;
     }
 }
