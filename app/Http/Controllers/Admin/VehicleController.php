@@ -40,14 +40,14 @@ class VehicleController extends Controller
     public function index(Request $request)
     {
         $query = Vehicle::select('*');
-        
+
         $vehicles = QueryBuilder::for($query)
             ->allowedFilters([
                 AllowedFilter::custom('search_text', new SearchTextFilter),
                 AllowedFilter::custom('make_at', new DateRangeFilter),
                 'make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price'])
             ->allowedSorts(['id', 'make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'make_at', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price']);
-    
+
             if( !$request->has('noPagination')) {
                 $vehicles = $vehicles->paginate(50);
             } else {
@@ -65,7 +65,7 @@ class VehicleController extends Controller
     public function store(CreateVehicleRequest $request)
     {
         try{
-            
+
             $result = DB::transaction(function () use ($request) {
 
                 foreach ($request->file('image') as $key => $image) {
@@ -107,7 +107,7 @@ class VehicleController extends Controller
     {
         try{
             $result = DB::transaction(function () use ($request,$id) {
-                $isDeleted = ImageService::deleteImages($id, $request,'image', '/vehicle/images/'.$id);
+                $isDeleted = ImageService::deleteVehicleImages($id, $request,'image', '/vehicle/images/'.$id);
                 if ($isDeleted) {
                     $images = ImageService::saveMultipleImages($request,'image', '/vehicle/images/'.$id);
                     if ($images) {
@@ -120,7 +120,7 @@ class VehicleController extends Controller
                          }
                     }
                 }
-                $isDeleted = ImageService::deleteImage($id, $request,'cover_image', '/vehicle/images/'.$id.'/cover_images');
+                $isDeleted = ImageService::deleteVehicleImage($id, $request,'cover_image', '/vehicle/images/'.$id.'/cover_images');
                 if ($isDeleted) {
                     $cover_image = ImageService::saveImage($request,'cover_image', '/vehicle/images/'.$id.'/cover_images');
                     if ($cover_image) {
@@ -134,7 +134,7 @@ class VehicleController extends Controller
                 $vehicle = Vehicle::findOrFail($id);
                 $vehicle->update($request->all());
 
-                
+
                 return $vehicle;
             });
 

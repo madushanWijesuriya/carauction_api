@@ -18,7 +18,7 @@ class ImageService
                 $image->move(public_path($path), $new_image);
                 $file_names[$key]['file'] = $new_image;
                 $file_names[$key]['full_url'] = $path. '/'. $new_image;
-                
+
             }
             return $file_names;
         }catch(Exception $e){
@@ -40,7 +40,7 @@ class ImageService
         }
     }
 
-    public static function deleteImages($vehicleId, $request, $input, $path) {
+    public static function deleteVehicleImages($vehicleId, $request, $input, $path) {
         try {
             $vehicle = Vehicle::find($vehicleId);
             $images = $request->file($input);
@@ -58,7 +58,7 @@ class ImageService
             return false;
         }
     }
-    public static function deleteImage($vehicleId, $request, $input, $path) {
+    public static function deleteVehicleImage($vehicleId, $request, $input, $path) {
         try {
             $vehicle = Vehicle::find($vehicleId);
             $image = $request->file($input);

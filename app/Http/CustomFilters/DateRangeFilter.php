@@ -21,7 +21,7 @@ class DateRangeFilter implements Filter
         else if ($property === 'etd')
             $query->whereBetween('etd', [Carbon::parse($dates[0])->startOfDay(), Carbon::parse($dates[1])->endOfDay()]);
        }
-        // strpos($searchValue, ' - ');    
+        // strpos($searchValue, ' - ');
         // $query->whereBetween('make_at', )
     }
 }

@@ -72,14 +72,14 @@ Route::middleware(['auth:sanctum', 'abilities:jwt-staff'])->prefix('staff')->gro
     Route::post('/vehicle/fuel-types/quickAdd', [VehicleController::class, 'storeFuelTypes'])->name('vehicle.storeFuelTypes.store');
     Route::post('/vehicle/exterior-colors/quickAdd', [VehicleController::class, 'storeExteriorColors'])->name('vehicle.storeExteriorColors.store');
     Route::post('/vehicle/features/quickAdd', [VehicleController::class, 'storeFeatures'])->name('vehicle.storeFeatures.store');
-        
+
     Route::post('/vehicle/engine/quickAdd', [VehicleController::class, 'storeEngine'])->name('vehicle.storeEngine.store');
     Route::post('/vehicle/gear/quickAdd', [VehicleController::class, 'storeGear'])->name('vehicle.storeGear.store');
     Route::post('/vehicle/fort/quickAdd', [VehicleController::class, 'storeFort'])->name('vehicle.storeFort.store');
     Route::post('/vehicle/vehicleUpdate/{id}', [VehicleController::class, 'vehicleUpdate'])->name('vehicle.vehicleUpdate.update');
-    
+
     Route::resources(['vehicle' => VehicleController::class]);
-    
+
 
     //contenet
     Route::get('/content/country/{id}',[ContentController::class, 'getByCountry']);
@@ -101,11 +101,11 @@ Route::middleware(['auth:sanctum', 'abilities:jwt-staff'])->prefix('staff')->gro
     Route::post('/news-letter/send',[NewsLetterController::class, 'sendNewsLetter']);
 
     Route::resources(['news-letter' => NewsLetterController::class]);
-    Route::resources(['shipping' => ShippingDocController::class]);
 
     //shipping
-    Route::resources(['shipping' => ShippingDocController::class]);
+    Route::post('/shipping/update/{id}',[ShippingDocController::class, 'update']);
 
+    Route::resources(['shipping' => ShippingDocController::class]);
 
 
 
@@ -121,7 +121,7 @@ Route::post('/customer/email/verification-notification', [AuthController::class,
 Route::middleware(['auth:sanctum', 'abilities:jwt-client'])->get('/customer/user', [AuthController::class, 'getCurrentUser']);
 
 Route::middleware(['auth:sanctum', 'abilities:jwt-client'])->prefix('customer')->group(function () {
-    
+
     Route::resources(['inquery' => InqueryController::class]);
 
     Route::post('/newsLetter/subscribe',[AuthNewsLetterController::class, 'subscribeForNewsLetter']);

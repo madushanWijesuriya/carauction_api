@@ -13,8 +13,13 @@ class VehicleDoc extends Model
         'vehicle_id','country_id','customer_id','etd','eta','doc_1','doc_2','doc_3','pol','pod','consignee_name','yard_location'
     ];
 
+    /**
+     * Get the vehicle that owns the VehicleDoc
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function vehicle()
     {
-        return $this->hasOne(Vehicle::class, 'vehicle_id', 'id');
+        return $this->belongsTo(vehicle::class, 'vehicle_id', 'id');
     }
 }

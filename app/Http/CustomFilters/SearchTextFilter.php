@@ -31,6 +31,6 @@ class SearchTextFilter implements Filter
                 });
             });
         }
-        
+
     }
 }
