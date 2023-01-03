@@ -20,9 +20,9 @@ class CreateVehicleDocsTable extends Migration
             $table->integer('customer_id');
             $table->date('etd');
             $table->date('eta');
-            $table->string('doc_1');
-            $table->string('doc_2');
-            $table->string('doc_3');
+            $table->string('doc_1')->nullable();
+            $table->string('doc_2')->nullable();
+            $table->string('doc_3')->nullable();
             $table->string('pol');
             $table->string('pod');
             $table->string('consignee_name');

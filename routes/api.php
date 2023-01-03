@@ -14,6 +14,7 @@ use App\Http\Controllers\Customer\Auth\NewsLetterController as AuthNewsLetterCon
 use App\Http\Controllers\Guest\ContentController as GuestContentController;
 use App\Http\Controllers\Guest\InqueryController as GuestInqueryController;
 use App\Http\Controllers\Guest\VehicleController as GuestVehicleController;
+use App\Http\Resources\Admin\ShippingDocResource;
 use Illuminate\Support\Facades\Route;
 
 
@@ -100,6 +101,9 @@ Route::middleware(['auth:sanctum', 'abilities:jwt-staff'])->prefix('staff')->gro
     Route::post('/news-letter/send',[NewsLetterController::class, 'sendNewsLetter']);
 
     Route::resources(['news-letter' => NewsLetterController::class]);
+    Route::resources(['shipping' => ShippingDocController::class]);
+
+    //shipping
     Route::resources(['shipping' => ShippingDocController::class]);
 
 
