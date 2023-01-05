@@ -103,48 +103,7 @@ class VehicleController extends Controller
             return response()->json(['message' => $e->getMessage()],500);
         }
     }
-    public function vehicleUpdate(UpdateVehicleRequest $request, $id)
-    {
-        try{
-            $result = DB::transaction(function () use ($request,$id) {
-                $isDeleted = ImageService::deleteVehicleImages($id, $request,'image', '/vehicle/images/'.$id);
-                if ($isDeleted) {
-                    $images = ImageService::saveMultipleImages($request,'image', '/vehicle/images/'.$id);
-                    if ($images) {
-                        foreach ($images as $key => $value) {
-                            VhImages::create([
-                                'vehicle_id' => $id,
-                                'full_url' => $value['full_url'],
-                                'file' => $value['file'],
-                            ]);
-                         }
-                    }
-                }
-                $isDeleted = ImageService::deleteVehicleImage($id, $request,'cover_image', '/vehicle/images/'.$id.'/cover_images');
-                if ($isDeleted) {
-                    $cover_image = ImageService::saveImage($request,'cover_image', '/vehicle/images/'.$id.'/cover_images');
-                    if ($cover_image) {
-                        Vehicle::find($id)->update([
-                            'cover_image_file' => $cover_image['file'],
-                            'cover_image_full_url' => $cover_image['full_url'],
-                        ]);
-                    }
-                }
-
-                $vehicle = Vehicle::findOrFail($id);
-                $vehicle->update($request->all());
-
-
-                return $vehicle;
-            });
-
-            if($result){
-                return new VehicleResource($result);
-            }
-        }catch(Exception $e){
-            return response()->json(['message' => $e->getMessage()],500);
-        }
-    }
+    
     public function show($id)
     {
         $vehicle = Vehicle::findOrFail($id);
@@ -315,44 +274,43 @@ class VehicleController extends Controller
             return response()->json(['message' => $e->getMessage()],500);
         }
     }
-    public function storeEngine(Request $request)
-    {
-        try{
-            $result = DB::transaction(function () use ($request) {
-                $model = VhEngine::create($request->all());
-
-    public function vehicleUpdate(Request $request, $id)
+    public function vehicleUpdate(UpdateVehicleRequest $request, $id)
     {
         try{
             $result = DB::transaction(function () use ($request,$id) {
+                $isDeleted = ImageService::deleteVehicleImages($id, $request,'image', '/vehicle/images/'.$id);
+                if ($isDeleted) {
+                    $images = ImageService::saveMultipleImages($request,'image', '/vehicle/images/'.$id);
+                    if ($images) {
+                        foreach ($images as $key => $value) {
+                            VhImages::create([
+                                'vehicle_id' => $id,
+                                'full_url' => $value['full_url'],
+                                'file' => $value['file'],
+                            ]);
+                         }
+                    }
+                }
+                $isDeleted = ImageService::deleteVehicleImage($id, $request,'cover_image', '/vehicle/images/'.$id.'/cover_images');
+                if ($isDeleted) {
+                    $cover_image = ImageService::saveImage($request,'cover_image', '/vehicle/images/'.$id.'/cover_images');
+                    if ($cover_image) {
+                        Vehicle::find($id)->update([
+                            'cover_image_file' => $cover_image['file'],
+                            'cover_image_full_url' => $cover_image['full_url'],
+                        ]);
+                    }
+                }
+
                 $vehicle = Vehicle::findOrFail($id);
                 $vehicle->update($request->all());
-                $images = ImageService::saveMultipleImages($request,'image', '/vehicle/images/'.$vehicle->id);
 
-                if ($images) {
-                    //delete current images
-                    VhImages::where('vehicle_id',$vehicle->id)->delete();
 
-                    foreach ($images as $key => $value) {
-                        VhImages::create([
-                            'vehicle_id' => $vehicle->id,
-                            'full_url' => $value['full_url'],
-                            'file' => $value['file'],
-                        ]);
-                     }
-                }
-                $cover_image = ImageService::saveImage($request,'cover_image', '/vehicle/images/'.$vehicle->id.'/cover_images');
-                if ($cover_image) {
-                    $vehicle->update([
-                        'cover_image_file' => $cover_image['file'],
-                        'cover_image_full_url' => $cover_image['full_url'],
-                    ]);
-                }
                 return $vehicle;
             });
 
             if($result){
-                return response()->json(['message' => 'Successfully Added'],200);
+                return new VehicleResource($result);
             }
         }catch(Exception $e){
             return response()->json(['message' => $e->getMessage()],500);

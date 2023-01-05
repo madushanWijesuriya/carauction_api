@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\InqueryController as AdminInqueryController;
 use App\Http\Controllers\Admin\NewsLetterController;
 use App\Http\Controllers\Admin\ShippingDocController;
+use App\Http\Controllers\Customer\ShippingDocController as CustomerShippingDocController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Customer\Auth\AuthController;
 use App\Http\Controllers\Customer\Auth\InqueryController;
@@ -128,6 +129,9 @@ Route::middleware(['auth:sanctum', 'abilities:jwt-client'])->prefix('customer')-
     Route::post('/newsLetter/subscribe',[AuthNewsLetterController::class, 'subscribeForNewsLetter']);
 
     Route::resources(['newsLetter' => AuthNewsLetterController::class]);
+
+
+    Route::resources(['shipping-doc' => CustomerShippingDocController::class]);
 });
 
 
