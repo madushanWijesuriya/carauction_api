@@ -41,13 +41,16 @@ class UpdateVehicleRequest extends FormRequest
             'isUsed'=> 'required',
             'mileage'=> 'required',
             
+            //new
             'engine_id' => 'required',
             // 'shipping_country_id' => 'required',
             // 'fort_id' => 'required',
             'gear_box_id' => 'required',
             'lot_number' => 'required',
             'title' => 'required',
-            'seats'=> 'required'
+            'seats'=> 'required',
+            'isSold'=> 'required',
+
         ];
     }
 }

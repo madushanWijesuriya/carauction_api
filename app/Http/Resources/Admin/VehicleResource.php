@@ -15,6 +15,7 @@ use App\Models\VhImages;
 use App\Models\VhMaker;
 use App\Models\VhModel;
 use App\Models\VhStatus;
+use App\Models\VhOdometer;
 use App\Models\VhStreeing;
 use App\Models\VhTransmission;
 use Carbon\Carbon;
@@ -48,6 +49,7 @@ class VehicleResource extends JsonResource
         $response['fuel_type_id'] = VhFuelTypes::find($response['fuel_type_id']);
         $response['exterior_color_id'] = VhExteriorColor::find($response['exterior_color_id']);
         $response['feature_id'] = VhFeatures::find($response['feature_id']);
+        $response['odometer_id'] = $vehicle->odometer;
         $response['images'] = VhImages::where('vehicle_id', $response['id'])->get();
         $response['inqueries'] = $vehicle->inqueries;
         return $response;

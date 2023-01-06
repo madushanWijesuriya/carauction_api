@@ -19,6 +19,7 @@ use App\Models\VhMakeModel;
 use App\Models\VhMaker;
 use App\Models\VhModel;
 use App\Models\VhStatus;
+use App\Models\VhOdometer;
 use App\Models\VhStreeing;
 use App\Models\VhTransmission;
 use Illuminate\Http\Request;
@@ -80,5 +81,8 @@ class ResourceController extends Controller
 
     public function getNewsLettersList(){
         return response()->json(['data' => NewsLetter::select('id','name')->get()]);
+    }
+    public function getOdometersList(){
+        return response()->json(['data' => VhOdometer::select('id','name')->get()]);
     }
 }

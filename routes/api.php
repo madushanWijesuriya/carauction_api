@@ -9,7 +9,9 @@ use App\Http\Controllers\Admin\NewsLetterController;
 use App\Http\Controllers\Admin\ShippingDocController;
 use App\Http\Controllers\Customer\ShippingDocController as CustomerShippingDocController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Customer\Auth\AuthController;
+use App\Http\Controllers\Customer\FinanceController;
 use App\Http\Controllers\Customer\Auth\InqueryController;
 use App\Http\Controllers\Customer\Auth\NewsLetterController as AuthNewsLetterController;
 use App\Http\Controllers\Guest\ContentController as GuestContentController;
@@ -48,6 +50,8 @@ Route::prefix('resources')->group(function () {
     Route::get('/engine-types',[ResourceController::class, 'getEngineList']);
     Route::get('/gears',[ResourceController::class, 'getGearsList']);
     Route::get('/newsLetters',[ResourceController::class, 'getNewsLettersList']);
+    Route::get('/odometers',[ResourceController::class, 'getOdometersList']);
+
 
 });
 
@@ -79,6 +83,7 @@ Route::middleware(['auth:sanctum', 'abilities:jwt-staff'])->prefix('staff')->gro
     Route::post('/vehicle/gear/quickAdd', [VehicleController::class, 'storeGear'])->name('vehicle.storeGear.store');
     Route::post('/vehicle/fort/quickAdd', [VehicleController::class, 'storeFort'])->name('vehicle.storeFort.store');
     Route::post('/vehicle/vehicleUpdate/{id}', [VehicleController::class, 'vehicleUpdate'])->name('vehicle.vehicleUpdate.update');
+    Route::post('/vehicle/odometer/quickAdd', [VehicleController::class, 'storeOdometer'])->name('vehicle.storeOdometer.store');
 
     Route::resources(['vehicle' => VehicleController::class]);
 
@@ -109,6 +114,10 @@ Route::middleware(['auth:sanctum', 'abilities:jwt-staff'])->prefix('staff')->gro
 
     Route::resources(['shipping' => ShippingDocController::class]);
 
+    Route::post('/payment/update/{id}',[PaymentController::class, 'update']);
+
+    Route::resources(['payment' => PaymentController::class]);
+
 
 
 });
@@ -132,6 +141,13 @@ Route::middleware(['auth:sanctum', 'abilities:jwt-client'])->prefix('customer')-
 
 
     Route::resources(['shipping-doc' => CustomerShippingDocController::class]);
+
+
+    Route::get('/stock',[FinanceController::class, 'getStockList']);
+    Route::get('/transaction',[FinanceController::class, 'getTransactionList']);
+    Route::get('/ledger',[FinanceController::class, 'getLedgerList']);
+
+
 });
 
 

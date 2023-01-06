@@ -42,7 +42,6 @@ class CreateVehiclesTable extends Migration
             $table->boolean('isUsed')->default(true);
             $table->double('mileage');
 
-
             $table->integer('engine_id')->nullable();
             // $table->integer('shipping_country_id')->nullable();
             // $table->integer('fort_id')->nullable();
@@ -50,7 +49,11 @@ class CreateVehiclesTable extends Migration
             $table->string('lot_number')->nullable();
             $table->string('title')->nullable();
             $table->integer('seats')->nullable();
-            // $table->integer('odometer')->nullable();
+            $table->integer('odometer_id')->nullable();
+
+            $table->string('interior_condition')->nullable();
+            $table->integer('wd')->nullable();
+            $table->string('exterior_condition')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

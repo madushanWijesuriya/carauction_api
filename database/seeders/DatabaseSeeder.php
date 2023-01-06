@@ -18,6 +18,7 @@ use App\Models\VhGearType;
 use App\Models\VhMakeModel;
 use App\Models\VhMaker;
 use App\Models\VhModel;
+use App\Models\VhOdometer;
 use App\Models\VhStatus;
 use App\Models\VhStreeing;
 use App\Models\VhTransmission;
@@ -202,6 +203,17 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($gearBoxes as $key => $value) {
             VhGearType::updateOrCreate($value);
+        }
+
+        $odometers = [
+            ['name' => 'meeter-01'],
+            ['name' => 'meeter-02'],
+            ['name' => 'meeter-03'],
+            ['name' => 'meeter-04'],
+            ['name' => 'meeter-05']
+        ];
+        foreach ($odometers as $key => $value) {
+            VhOdometer::updateOrCreate($value);
         }
 
 

@@ -24,6 +24,7 @@ use App\Models\VhImages;
 use App\Models\VhMakeModel;
 use App\Models\VhMaker;
 use App\Models\VhModel;
+use App\Models\VhOdometer;
 use App\Models\VhStreeing;
 use App\Models\VhTransmission;
 use App\Services\ImageService;
@@ -355,6 +356,22 @@ class VehicleController extends Controller
         try{
             $result = DB::transaction(function () use ($request) {
                 $model = VhEngine::create($request->all());
+
+                return $model;
+            });
+
+            if($result){
+                return response()->json(['message' => 'Successfully Added'],200);
+            }
+        }catch(Exception $e){
+            return response()->json(['message' => $e->getMessage()],500);
+        }
+    }
+    public function storeOdometer(Request $request)
+    {
+        try{
+            $result = DB::transaction(function () use ($request) {
+                $model = VhOdometer::create($request->all());
 
                 return $model;
             });
