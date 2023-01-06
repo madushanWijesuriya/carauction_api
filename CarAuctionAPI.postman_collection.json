@@ -19,7 +19,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"adminss@gmail.com\",\r\n    \"password\": \"admin123\"\r\n}",
+									"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\": \"admin@123\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -151,7 +151,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{base_url}}/api/staff/vehicle?filter[search_text]",
+									"raw": "{{base_url}}/api/staff/vehicle",
 									"host": [
 										"{{base_url}}"
 									],
@@ -178,7 +178,8 @@
 										},
 										{
 											"key": "filter[search_text]",
-											"value": null
+											"value": "sssssssssssssssssss",
+											"disabled": true
 										}
 									]
 								}
@@ -378,13 +379,18 @@
 											"type": "text"
 										},
 										{
+											"key": "odometer_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
 											"key": "lot_number",
-											"value": " '323432'",
+											"value": " 323432",
 											"type": "text"
 										},
 										{
 											"key": "title",
-											"value": " 'sdasds'",
+											"value": " sdasds",
 											"type": "text"
 										},
 										{
@@ -996,6 +1002,50 @@
 							"response": []
 						},
 						{
+							"name": "new quick add odometer",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"{{$randomFileName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/odometer/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"odometer",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "update",
 							"request": {
 								"auth": {
@@ -1138,17 +1188,12 @@
 											"type": "text"
 										},
 										{
-											"key": "shipping_country_id",
-											"value": " 1",
-											"type": "text"
-										},
-										{
-											"key": "fort_id",
-											"value": " 1",
-											"type": "text"
-										},
-										{
 											"key": "gear_box_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "odometer_id",
 											"value": " 1",
 											"type": "text"
 										},
@@ -1960,13 +2005,69 @@
 									}
 								],
 								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"subject\": \"Hi News Letter\",\r\n    \"html_content\":\"sssssssss\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "vehicle_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "country_id",
+											"value": " 1",
+											"type": "text"
+										},
+										{
+											"key": "customer_id",
+											"value": " 3",
+											"type": "text"
+										},
+										{
+											"key": "etd",
+											"value": " 2010-10-21",
+											"type": "text"
+										},
+										{
+											"key": "eta",
+											"value": " 2010-10-21",
+											"type": "text"
+										},
+										{
+											"key": "pol",
+											"value": " \"sdasdsd\"",
+											"type": "text"
+										},
+										{
+											"key": "pod",
+											"value": " \"sdasdsdas\"",
+											"type": "text"
+										},
+										{
+											"key": "consignee_name",
+											"value": " \"dsadssasd\"",
+											"type": "text"
+										},
+										{
+											"key": "yard_location",
+											"value": " \"dsadsadsads\"",
+											"type": "text"
+										},
+										{
+											"key": "doc[0]",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_075503.png"
+										},
+										{
+											"key": "doc[1]",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_112458.png"
+										},
+										{
+											"key": "doc[2]",
+											"type": "file",
+											"src": "/C:/Users/madushanWijesuriya/Pictures/Screenshots/Screenshot_20221029_112458.png"
 										}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{base_url}}/api/staff/shipping",
@@ -2124,6 +2225,154 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Payments",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"vehicle_id\" : 1,\r\n    \"customer_id\" : 1,\r\n    \"agent\" : \"agent 01\",\r\n    \"paid_amount\" : 1000.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/payment",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"payment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/payment?filter[payment_search_text]=Status1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"payment"
+									],
+									"query": [
+										{
+											"key": "filter[payment_search_text]",
+											"value": "Status1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"vehicle_id\" : 1,\r\n    \"customer_id\" : 2,\r\n    \"agent\" : \"agent 01\",\r\n    \"paid_amount\" : 2000.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/payment/update/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"payment",
+										"update",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -2140,7 +2389,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"customer01@gmail.com\",\r\n    \"password\": \"customer01@gmail.com\"\r\n}",
+									"raw": "{\r\n    \"email\":\"customesdasdsdar03@gmail.com\",\r\n    \"password\": \"customesdasdsdar03@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2198,7 +2447,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"customer03\",\r\n    \"email\":\"customer03@gmail.com\",\r\n    \"password\":\"customer03@gmail.com\",\r\n    \"country_id\": 2,\r\n    \"type\": \"individual\",\r\n    \"company_name\": \"99x\",\r\n    \"company_address\": \"colombo 01\",\r\n    \"company_email\": \"99x.info@gmail.com\",\r\n    \"city\": \"nugegoda\",\r\n    \"requested_car\": \"i8\",\r\n    \"port\": \"colombo\",\r\n    \"contact_person\": \"{{$randomFirstName}} {{$randomLastName}}\",\r\n    \"contact_no\": \"0754825485\"\r\n}",
+									"raw": "{\r\n    \"name\":\"customer03\",\r\n    \"email\":\"customesdasdsdar03@gmail.com\",\r\n    \"password\":\"customer03@gmail.com\",\r\n    \"country_id\": 2,\r\n    \"type\": \"individual\",\r\n    \"company_name\": \"99x\",\r\n    \"company_address\": \"colombo 01\",\r\n    \"company_email\": \"99x.info@gmail.com\",\r\n    \"city\": \"nugegoda\",\r\n    \"requested_car\": \"i8\",\r\n    \"port\": \"colombo\",\r\n    \"contact_person\": \"{{$randomFirstName}} {{$randomLastName}}\",\r\n    \"contact_no\": \"0754825485\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2366,6 +2615,259 @@
 										"customer",
 										"newsLetter",
 										"subscribe"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Shipping Doc",
+					"item": [
+						{
+							"name": "get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/customer/shipping-doc?filter[vehicle_name]",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"shipping-doc"
+									],
+									"query": [
+										{
+											"key": "filter[eta]",
+											"value": "2010-10-21 - 2010-03-12",
+											"disabled": true
+										},
+										{
+											"key": "filter[etd]",
+											"value": "2010-10-21 - 2010-03-12",
+											"disabled": true
+										},
+										{
+											"key": "filter[vehicle_name]",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Finance",
+					"item": [
+						{
+							"name": "stock",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/customer/stock",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"stock"
+									],
+									"query": [
+										{
+											"key": "filter[stock_search_text]",
+											"value": "Status1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ledger",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/customer/ledger",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"ledger"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "-id",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "-created_at",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "-debit",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "-credit",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "-balance",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transaction",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/customer/transaction",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "-fob_price",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "-agent",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "-chassis_no",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "-make_at",
+											"description": "year",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "-vehicle_id",
+											"description": "stock no",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "-remaining_amount",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "-paid_amount",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -2962,6 +3464,37 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "get odometers",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/odometers",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"odometers"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -3052,7 +3585,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{base_url}}/api/guest/vehicle?filter[make_at]=2022-09-21 - 2022-09-23",
+									"raw": "{{base_url}}/api/guest/vehicle?paginate=4&filter[make_at]=2022-09-21 - 2022-09-30&sort=-id",
 									"host": [
 										"{{base_url}}"
 									],
@@ -3079,8 +3612,7 @@
 										},
 										{
 											"key": "paginate",
-											"value": "4",
-											"disabled": true
+											"value": "4"
 										},
 										{
 											"key": "filter[search_text]",
@@ -3089,12 +3621,16 @@
 										},
 										{
 											"key": null,
-											"value": null,
+											"value": "",
 											"disabled": true
 										},
 										{
 											"key": "filter[make_at]",
-											"value": "2022-09-21 - 2022-09-23"
+											"value": "2022-09-21 - 2022-09-30"
+										},
+										{
+											"key": "sort",
+											"value": "-id"
 										}
 									]
 								}
