@@ -13,12 +13,20 @@ class Vehicle extends Model
 
         'make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'make_at', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image_full_url', 'cover_image_file', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price',
         'engine_id', 'gear_box_id', 'lot_number', 'seats', 'interior_cond', 'title' ,'isSold',
-        'odometer_id'
+        'odometer_id', 'fort_id' ,'shipping_country_id' ,'interior_condition' ,'exterior_condition' ,'wd'
     ];
 
     public function make()
     {
         return $this->belongsTo(VhMaker::class,'make_id','id');
+    }
+    public function country()
+    {
+        return $this->belongsTo(Country::class,'shipping_country_id','id');
+    }
+    public function fort()
+    {
+        return $this->belongsTo(VhFort::class,'fort_id','id');
     }
     public function make_id()
     {

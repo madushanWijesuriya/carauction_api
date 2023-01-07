@@ -74,6 +74,12 @@ class AuthController extends Controller
                 ], 401);
             }
             $user = Customer::where('email', $request->email)->first();
+            if(!$user){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'There is no user with that email address',
+                ], 401);
+            }
             if ($user->email_verified_at) {
                 if(!Auth::guard('jwt-client')->attempt($request->only(['email', 'password']))){
                     return response()->json([
@@ -96,6 +102,7 @@ class AuthController extends Controller
                 return response()->json([
                     'status' => true,
                     'message' => 'User Logged In Successfully',
+                    'isClient' => true,
                 ], 200)->withCookie($cookie);
             }
             return response()->json([

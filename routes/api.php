@@ -51,6 +51,8 @@ Route::prefix('resources')->group(function () {
     Route::get('/gears',[ResourceController::class, 'getGearsList']);
     Route::get('/newsLetters',[ResourceController::class, 'getNewsLettersList']);
     Route::get('/odometers',[ResourceController::class, 'getOdometersList']);
+    Route::get('/chassis',[ResourceController::class, 'getChassisList']);
+    Route::get('/lot_numbers',[ResourceController::class, 'getLotNumbersList']);
 
 
 });

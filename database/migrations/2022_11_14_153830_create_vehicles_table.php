@@ -43,8 +43,8 @@ class CreateVehiclesTable extends Migration
             $table->double('mileage');
 
             $table->integer('engine_id')->nullable();
-            // $table->integer('shipping_country_id')->nullable();
-            // $table->integer('fort_id')->nullable();
+            $table->integer('shipping_country_id')->nullable();
+            $table->integer('fort_id')->nullable();
             $table->integer('gear_box_id')->nullable();
             $table->string('lot_number')->nullable();
             $table->string('title')->nullable();

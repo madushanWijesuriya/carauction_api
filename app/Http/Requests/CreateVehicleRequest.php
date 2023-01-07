@@ -42,12 +42,15 @@ class CreateVehicleRequest extends FormRequest
             'mileage'=> 'required',
             
             'engine_id' => 'required',
-            // 'shipping_country_id' => 'required',
-            // 'fort_id' => 'required',
+            'shipping_country_id' => 'required',
+            'fort_id' => 'required',
             'gear_box_id' => 'required',
             'lot_number' => 'required',
             'title' => 'required',
-            'seats'=> 'required'
+            'seats'=> 'required',
+            'interior_condition' => 'required',
+            'wd' => 'required',
+            'exterior_condition' => 'required',
         ];
     }
 }

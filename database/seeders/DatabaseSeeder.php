@@ -184,11 +184,11 @@ class DatabaseSeeder extends Seeder
         }
 
         $engineTypes = [
-            ['name' => 'Engine-01'],
-            ['name' => 'Engine-02'],
-            ['name' => 'Engine-03'],
-            ['name' => 'Engine-04'],
-            ['name' => 'Engine-05']
+            ['name' => 700],
+            ['name' => 600],
+            ['name' => 500],
+            ['name' => 400],
+            ['name' => 300],
         ];
         foreach ($engineTypes as $key => $value) {
             VhEngine::updateOrCreate($value);

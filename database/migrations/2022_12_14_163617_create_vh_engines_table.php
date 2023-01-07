@@ -15,7 +15,7 @@ class CreateVhEnginesTable extends Migration
     {
         Schema::create('vh_engines', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->integer('name')->unique();
             $table->timestamps();
         });
     }

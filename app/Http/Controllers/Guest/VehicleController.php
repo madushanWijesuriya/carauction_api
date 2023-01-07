@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Http\CustomFilters\DateRangeFilter;
+use App\Http\CustomFilters\RangeFilter;
 use App\Http\CustomFilters\SearchTextFilter;
 use App\Http\Requests\CreateVehicleRequest;
 use App\Http\Requests\UpdateVehicleRequest;
@@ -41,7 +42,11 @@ class VehicleController extends Controller
             ->allowedFilters([
                 AllowedFilter::custom('search_text', new SearchTextFilter),
                 AllowedFilter::custom('make_at', new DateRangeFilter),
-                'make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price'])
+                AllowedFilter::custom('make_at_range', new DateRangeFilter),
+                AllowedFilter::custom('engine_id_range', new RangeFilter),
+                AllowedFilter::custom('mileage_range', new RangeFilter),
+                'make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price',
+                'engine_id', 'lot_number', 'shipping_country_id', 'fort_id'])
             ->allowedSorts(['id', 'make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'make_at', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price']);
     
             if( !$request->has('noPagination')) {

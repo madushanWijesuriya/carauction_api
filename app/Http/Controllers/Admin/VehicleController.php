@@ -35,6 +35,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use Illuminate\Support\Facades\Validator;
+
 
 class VehicleController extends Controller
 {
@@ -113,6 +115,22 @@ class VehicleController extends Controller
 
     public function storeMaker(Request $request)
     {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:vh_makers,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
+
         try{
             $result = DB::transaction(function () use ($request) {
                 $maker = VhMaker::create($request->all());
@@ -129,6 +147,22 @@ class VehicleController extends Controller
 
     public function storeModel(Request $request)
     {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:vh_models,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
+
         try{
             $result = DB::transaction(function () use ($request) {
                 $model = VhModel::create($request->all());
@@ -146,6 +180,21 @@ class VehicleController extends Controller
     }
     public function storeBodyType(Request $request)
     {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:vh_body_types,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
         try{
             $result = DB::transaction(function () use ($request) {
                 $model = VhBodyType::create($request->all());
@@ -163,6 +212,21 @@ class VehicleController extends Controller
 
     public function storeStreeings(Request $request)
     {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:vh_streeings,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
         try{
             $result = DB::transaction(function () use ($request) {
                 $model = VhStreeing::create($request->all());
@@ -179,6 +243,21 @@ class VehicleController extends Controller
     }
     public function storeDoorTypes(Request $request)
     {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:vh_door_types,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
         try{
             $result = DB::transaction(function () use ($request) {
                 $model = VhDoorTypes::create($request->all());
@@ -196,6 +275,21 @@ class VehicleController extends Controller
 
     public function storeDriveTypes(Request $request)
     {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:vh_drive_types,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
         try{
             $result = DB::transaction(function () use ($request) {
                 $model = VhDriveTypes::create($request->all());
@@ -212,6 +306,21 @@ class VehicleController extends Controller
     }
     public function storeFuelTypes(Request $request)
     {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:vh_fuel_types,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
         try{
             $result = DB::transaction(function () use ($request) {
                 $model = VhFuelTypes::create($request->all());
@@ -228,6 +337,21 @@ class VehicleController extends Controller
     }
     public function storeExteriorColors(Request $request)
     {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:vh_exterior_colors,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
         try{
             $result = DB::transaction(function () use ($request) {
                 $model = VhExteriorColor::create($request->all());
@@ -244,6 +368,21 @@ class VehicleController extends Controller
     }
     public function storeFeatures(Request $request)
     {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:vh_features,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
         try{
             $result = DB::transaction(function () use ($request) {
                 $model = VhFeatures::create($request->all());
@@ -261,6 +400,21 @@ class VehicleController extends Controller
 
     public function storeTransmission(Request $request)
     {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:vh_transmissions,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
         try{
             $result = DB::transaction(function () use ($request) {
                 $model = VhTransmission::create($request->all());
@@ -319,6 +473,21 @@ class VehicleController extends Controller
     }
     public function storeFort(Request $request)
     {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:vh_forts,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
         try{
             $result = DB::transaction(function () use ($request) {
                 $fort = VhFort::create($request->all());
@@ -337,6 +506,21 @@ class VehicleController extends Controller
 
     public function storeGear(Request $request)
     {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:vh_gear_types,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
         try{
             $result = DB::transaction(function () use ($request) {
                 $model = VhGearType::create($request->all());
@@ -353,6 +537,21 @@ class VehicleController extends Controller
     }
     public function storeEngine(Request $request)
     {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:vh_engines,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
         try{
             $result = DB::transaction(function () use ($request) {
                 $model = VhEngine::create($request->all());
@@ -369,6 +568,21 @@ class VehicleController extends Controller
     }
     public function storeOdometer(Request $request)
     {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:vh_odometers,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
         try{
             $result = DB::transaction(function () use ($request) {
                 $model = VhOdometer::create($request->all());

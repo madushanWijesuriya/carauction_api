@@ -52,6 +52,8 @@ class VehicleResource extends JsonResource
         $response['odometer_id'] = $vehicle->odometer;
         $response['images'] = VhImages::where('vehicle_id', $response['id'])->get();
         $response['inqueries'] = $vehicle->inqueries;
+        $response['shipping_country_id'] = $vehicle->country;
+        $response['fort_id'] = $vehicle->fort;
         return $response;
     }
 }
