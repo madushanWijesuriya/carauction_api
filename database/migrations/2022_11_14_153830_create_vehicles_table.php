@@ -54,6 +54,7 @@ class CreateVehiclesTable extends Migration
             $table->string('interior_condition')->nullable();
             $table->integer('wd')->nullable();
             $table->string('exterior_condition')->nullable();
+            $table->boolean('isAuction')->default(false);
 
             $table->softDeletes();
             $table->timestamps();

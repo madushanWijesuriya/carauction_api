@@ -13,7 +13,7 @@ class Vehicle extends Model
 
         'make_id',	'model_id',	'status_id', 'body_type_id', 'transmission_id',	'streeing_id',	'door_type_id',	'driver_type_id', 'fuel_type_id', 'exterior_color_id', 'feature_id', 'chassis_no', 'make_at', 'fob_price', 'displacement', 'isUsed', 'mileage', 'grade', 'cover_image_full_url', 'cover_image_file', 'description', 'private_note', 'sup_name', 'sup_price', 'sup_url', 'market_price',
         'engine_id', 'gear_box_id', 'lot_number', 'seats', 'interior_cond', 'title' ,'isSold',
-        'odometer_id', 'fort_id' ,'shipping_country_id' ,'interior_condition' ,'exterior_condition' ,'wd'
+        'odometer_id', 'fort_id' ,'shipping_country_id' ,'interior_condition' ,'exterior_condition' ,'wd', 'isAuction'
     ];
 
     public function make()
