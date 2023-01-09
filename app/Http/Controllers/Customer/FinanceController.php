@@ -39,7 +39,11 @@ class FinanceController extends Controller
         $total_debit = $total_sale - $total_credit;
         $total_bal = $total_credit - $total_debit;
         
-        dd($total_bal);
+        return response()->json(['data' => [
+            'stock_count' => $stock_count,
+            'transaction_count' => $transaction_count,
+            'total_bal' => number_format($total_bal,2),
+        ]]);
         
     }
 
@@ -94,7 +98,7 @@ class FinanceController extends Controller
         $table_footer['debit'] = $total_sale;
         $table_footer['credit'] = $total_credit;
         $table_footer['balance'] = $total_bal;
-        
+
         return LedgerResource::collection($result)->additional(['footer' => $table_footer]);
     }
 
