@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Common;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
+use App\Models\Customer;
 use App\Models\NewsLetter;
 use App\Models\Vehicle;
 use App\Models\VhBodyType;
@@ -91,5 +92,8 @@ class ResourceController extends Controller
     }
     public function getLotNumbersList(){
         return response()->json(['data' => Vehicle::whereNotNull('lot_number')->select('id','lot_number')->groupBy('lot_number')->get()]);
+    }
+    public function getCustomers(){
+        return response()->json(['data' => Customer::select('id','email')->get()]);
     }
 }

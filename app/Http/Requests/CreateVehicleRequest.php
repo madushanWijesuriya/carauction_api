@@ -29,7 +29,7 @@ class CreateVehicleRequest extends FormRequest
             'feature_id'=> 'required',
             'make_at'=> 'required',
             'fob_price'=> 'required',
-            'chassis_no'=> 'required',
+            'chassis_no'=> 'required|unique:vehicles,chassis_no',
             'displacement'=> 'required',
             'grade'=> 'required',
             'description'=> 'required',
@@ -51,6 +51,7 @@ class CreateVehicleRequest extends FormRequest
             'interior_condition' => 'required',
             'wd' => 'required',
             'exterior_condition' => 'required',
+            'odometer_id' => 'required',
         ];
     }
 }

@@ -50,9 +50,7 @@ class ShippingDocController extends Controller
             'customer_id' => 'required',
             'etd' => 'required',
             'eta' => 'required',
-            'doc_1' => 'required',
-            'doc_2' => 'required',
-            'doc_3' => 'required',
+            'doc' => 'required',
             'pol' => 'required',
             'pod' => 'required',
             'consignee_name' => 'required',
@@ -62,6 +60,9 @@ class ShippingDocController extends Controller
 
         try {
             $result =  DB::transaction(function () use ($request) {
+                if (!$request->file('doc')) {
+                    return response()->json(['message' => 'Please upload the documents'],422);  
+                }
                 $docs = ImageService::saveMultipleImages($request,'doc', '/client/shipingDocs/'.$request->customer_id. '/' .$request->vehicle_id);
 
                 $shipingDoc = VehicleDoc::create($request->all());

@@ -53,6 +53,7 @@ Route::prefix('resources')->group(function () {
     Route::get('/odometers',[ResourceController::class, 'getOdometersList']);
     Route::get('/chassis',[ResourceController::class, 'getChassisList']);
     Route::get('/lot_numbers',[ResourceController::class, 'getLotNumbersList']);
+    Route::get('/customers',[ResourceController::class, 'getCustomers']);
 
 
 });
@@ -86,6 +87,7 @@ Route::middleware(['auth:sanctum', 'abilities:jwt-staff'])->prefix('staff')->gro
     Route::post('/vehicle/fort/quickAdd', [VehicleController::class, 'storeFort'])->name('vehicle.storeFort.store');
     Route::post('/vehicle/vehicleUpdate/{id}', [VehicleController::class, 'vehicleUpdate'])->name('vehicle.vehicleUpdate.update');
     Route::post('/vehicle/odometer/quickAdd', [VehicleController::class, 'storeOdometer'])->name('vehicle.storeOdometer.store');
+    Route::post('/vehicle/country/quickAdd', [VehicleController::class, 'storeCountry'])->name('vehicle.storeCountry.store');
 
     Route::resources(['vehicle' => VehicleController::class]);
 

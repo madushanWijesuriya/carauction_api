@@ -1046,6 +1046,50 @@
 							"response": []
 						},
 						{
+							"name": "new quick add country",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"{{$randomFileName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/staff/vehicle/country/quickAdd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"staff",
+										"vehicle",
+										"country",
+										"quickAdd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "update",
 							"request": {
 								"auth": {
@@ -2389,7 +2433,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"customesdasdsdar03@gmail.com\",\r\n    \"password\": \"customesdasdsdar03@gmail.com\"\r\n}",
+									"raw": "{\r\n    \"email\":\"shanwijesuriya.madushan@gmail.com\",\r\n    \"password\": \"11111111\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3467,6 +3511,37 @@
 						},
 						{
 							"name": "get odometers",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/resources/odometers",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"resources",
+										"odometers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get customers",
 							"protocolProfileBehavior": {
 								"disabledSystemHeaders": {}
 							},

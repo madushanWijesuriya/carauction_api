@@ -9,6 +9,7 @@ use App\Http\Requests\CreateVehicleRequest;
 use App\Http\Requests\UpdateVehicleRequest;
 use App\Http\Resources\Admin\VehicleCollection;
 use App\Http\Resources\Admin\VehicleResource;
+use App\Models\Country;
 use App\Models\Vehicle;
 use App\Models\VhBodyType;
 use App\Models\VhCountryFort;
@@ -66,19 +67,19 @@ class VehicleController extends Controller
     }
 
     public function store(CreateVehicleRequest $request)
-    {
+    {Log::info($request->all());
         try{
 
             $result = DB::transaction(function () use ($request) {
-
-                foreach ($request->file('image') as $key => $image) {
-                    # code...
-                }
-
                 $vehicle = Vehicle::create($request->all());
-
+                $images = null;
+                $cover_image = null;
                 //if (env('APP_ENV') == 'local') {
-                    $images = ImageService::saveMultipleImages($request,'image', '/vehicle/images/'.$vehicle->id);
+                    if ($request->file('image')) {
+                        $images = ImageService::saveMultipleImages($request,'image', '/vehicle/images/'.$vehicle->id);
+                    } else {
+                        return response()->json(['message' => 'Please select images'],422);
+                    }
                     if ($images) {
                         foreach ($images as $key => $value) {
                             VhImages::create([
@@ -88,7 +89,11 @@ class VehicleController extends Controller
                             ]);
                          }
                     }
-                    $cover_image = ImageService::saveImage($request,'cover_image', '/vehicle/images/'.$vehicle->id.'/cover_images');
+                    if ($request->file('cover_image')) {
+                        $cover_image = ImageService::saveImage($request,'cover_image', '/vehicle/images/'.$vehicle->id.'/cover_images');
+                    } else {
+                        return response()->json(['message' => 'Please select cover image'],422);
+                    }
                     if ($cover_image) {
                         $vehicle->update([
                             'cover_image_file' => $cover_image['file'],
@@ -524,6 +529,37 @@ class VehicleController extends Controller
         try{
             $result = DB::transaction(function () use ($request) {
                 $model = VhGearType::create($request->all());
+
+                return $model;
+            });
+
+            if($result){
+                return response()->json(['message' => 'Successfully Added'],200);
+            }
+        }catch(Exception $e){
+            return response()->json(['message' => $e->getMessage()],500);
+        }
+    }
+    public function storeCountry(Request $request)
+    {
+        $validateUser = Validator::make($request->all(),
+                [
+                    'name' => 'required|unique:countries,name',
+                    
+                ]);
+    
+            if($validateUser->fails()){
+                
+            
+                return response()->json([
+                    'data'=>[
+                        'message'=>'The given data was invalid.',
+                        'errors'=>$validateUser->errors()
+                    ]], 422);
+        }
+        try{
+            $result = DB::transaction(function () use ($request) {
+                $model = Country::create($request->all());
 
                 return $model;
             });
