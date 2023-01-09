@@ -56,4 +56,9 @@ class Customer extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function docs()
+    {
+        return $this->hasMany(VehicleDoc::class, 'customer_id', 'id');
+    }
 }

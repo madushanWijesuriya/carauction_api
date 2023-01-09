@@ -42,8 +42,7 @@ class PaymentController extends Controller
     }
 
     public function store(Request $request){
-        $validate = Validator::make($request->all(),
-        [
+        $validated = $request->validate([        
             'vehicle_id' => 'required|exists:vehicles,id',
             'customer_id' => 'required|exists:customers,id',
             'agent' => 'required',
@@ -68,8 +67,7 @@ class PaymentController extends Controller
     }
 
     public function update(Request $request, $id){
-        $validate = Validator::make($request->all(),
-        [
+        $validated = $request->validate([
             'vehicle_id' => 'required|exists:vehicles,id',
             'customer_id' => 'required|exists:customers,id',
             'agent' => 'required',

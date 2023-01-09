@@ -42,9 +42,13 @@ class ShippingDocController extends Controller
         return ShippingDocResource::collection($result);
     }
 
+    public function show($id){
+        
+        return new ShippingDocResource(VehicleDoc::find($id));
+    }
     public function store(Request $request){
-        $validate = Validator::make($request->all(),
-        [
+        
+        $validated = $request->validate([
             'vehicle_id' => 'required',
             'country_id' => 'required',
             'customer_id' => 'required',
@@ -57,6 +61,7 @@ class ShippingDocController extends Controller
             'yard_location' => 'required',
             'doc' => 'required',
         ]);
+
 
         try {
             $result =  DB::transaction(function () use ($request) {
@@ -82,8 +87,7 @@ class ShippingDocController extends Controller
     }
 
     public function update(Request $request, $id){
-        $validate = Validator::make($request->all(),
-        [
+        $validated = $request->validate([
             'country_id' => 'required',
             'etd' => 'required',
             'eta' => 'required',
@@ -101,14 +105,19 @@ class ShippingDocController extends Controller
                 if(count($request->file('doc')) > 0) {
 
                     if ($shipingDoc->doc_1) {
-
                         unlink(public_path() . $shipingDoc->doc_1);
+                        // $shipingDoc->update(['doc_1' => null]);
+
                     }
                     if($shipingDoc->doc_2) {
                         unlink(public_path() .'/'. $shipingDoc->doc_2);
+                        $shipingDoc->update(['doc_2' => null]);
+
                     }
                     if ($shipingDoc->doc_3) {
                         unlink(public_path() .'/'. $shipingDoc->doc_3);
+                        $shipingDoc->update(['doc_3' => null]);
+
                     }
                 }
 

@@ -22,4 +22,12 @@ class VehicleDoc extends Model
     {
         return $this->belongsTo(vehicle::class, 'vehicle_id', 'id');
     }
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id', 'id');
+    }
 }

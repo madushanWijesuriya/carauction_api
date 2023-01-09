@@ -67,7 +67,7 @@ class VehicleController extends Controller
     }
 
     public function store(CreateVehicleRequest $request)
-    {Log::info($request->all());
+    {
         try{
 
             $result = DB::transaction(function () use ($request) {

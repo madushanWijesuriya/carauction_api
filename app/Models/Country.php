@@ -20,4 +20,8 @@ class Country extends Model
     {
         return $this->hasMany(Vehicle::class, 'shipping_country_id', 'id');
     }
+    public function docs()
+    {
+        return $this->hasMany(VehicleDoc::class, 'country_id', 'id');
+    }
 }

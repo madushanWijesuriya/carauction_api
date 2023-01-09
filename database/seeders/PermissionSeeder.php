@@ -37,7 +37,7 @@ class PermissionSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('admin@123'),
             ])->assignRole('Admin');
-        };
+        }
         
 
     }
