@@ -147,6 +147,7 @@ Route::middleware(['auth:sanctum', 'abilities:jwt-client'])->prefix('customer')-
     Route::resources(['shipping-doc' => CustomerShippingDocController::class]);
 
 
+    Route::get('/tileData',[FinanceController::class, 'getTileData']);
     Route::get('/stock',[FinanceController::class, 'getStockList']);
     Route::get('/transaction',[FinanceController::class, 'getTransactionList']);
     Route::get('/ledger',[FinanceController::class, 'getLedgerList']);
