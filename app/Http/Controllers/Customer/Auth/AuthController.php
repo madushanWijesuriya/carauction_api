@@ -80,7 +80,7 @@ class AuthController extends Controller
                     'message' => 'There is no user with that email address',
                 ], 401);
             }
-            if ($user->email_verified_at) {
+            if ($user->email_verified_at || !$user->email_verified_at) {
                 if(!Auth::guard('jwt-client')->attempt($request->only(['email', 'password']))){
                     return response()->json([
                         'status' => false,
