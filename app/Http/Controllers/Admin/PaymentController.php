@@ -11,6 +11,7 @@ use App\Http\CustomFilters\SearchTextFilter;
 use App\Http\Resources\Admin\ShippingDocResource;
 use App\Http\Resources\Admin\PaymentResource;
 use App\Models\VehicleDoc;
+use App\Models\Vehicle;
 use App\Models\Payment;
 use Exception;
 use Illuminate\Http\Request;
@@ -49,6 +50,11 @@ class PaymentController extends Controller
             'paid_amount' => 'required'
         ]);
 
+        $vehicle = Vehicle::find($request->vehicle_id);
+        if($request->paid_amount > $vehicle->fob_price) {
+             return response()->json(['message' => 'You cannot enter amount above sale price'],500);
+        }
+
         try {
             $result =  DB::transaction(function () use ($request) {
                 if (Payment::create($request->all())) return true;
@@ -65,7 +71,10 @@ class PaymentController extends Controller
 
 
     }
-
+    public function show($id){
+        
+        return new PaymentResource(Payment::find($id));
+    }
     public function update(Request $request, $id){
         $validated = $request->validate([
             'vehicle_id' => 'required|exists:vehicles,id',
@@ -74,10 +83,13 @@ class PaymentController extends Controller
             'paid_amount' => 'required'
         ]);
         try {
+            $vehicle = Vehicle::find($request->vehicle_id);
+        if($request->paid_amount > $vehicle->fob_price) {
+             return response()->json(['message' => 'You cannot enter amount above sale price'],500);
+        }
             $result =  DB::transaction(function () use ($request, $id) {
                 //delete current images
                 $payment = Payment::find($id);
-                dd($payment);
                 if($payment) {
                     $payment->update($request->all());
                 }

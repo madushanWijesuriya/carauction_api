@@ -23,6 +23,7 @@ class ShippingDocResource extends JsonResource
         $response['vehicle_id'] = $doc->vehicle;
         $response['country_id'] = $doc->country;
         $response['customer_id'] = $doc->customer;
+        $response['chassis_no'] = $doc->vehicle->chassis_no;
         return $response;
     }
 }

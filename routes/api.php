@@ -18,6 +18,7 @@ use App\Http\Controllers\Guest\ContentController as GuestContentController;
 use App\Http\Controllers\Guest\InqueryController as GuestInqueryController;
 use App\Http\Controllers\Guest\VehicleController as GuestVehicleController;
 use App\Http\Resources\Admin\ShippingDocResource;
+use App\Models\Staff;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,7 +28,8 @@ Route::get('test',function(){
 });
 //=====Common Routes==================================================================//
 Route::middleware(['auth:sanctum'])->get('/auth/checkLogin', function () {
-    return response()->json(['data' => auth()->user()], 200);
+    
+    return response()->json(['data' => auth()->user(), 'isClient' => !auth()->user() instanceof Staff], 200);
 
 });
 Route::prefix('resources')->group(function () {
