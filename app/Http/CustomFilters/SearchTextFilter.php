@@ -45,12 +45,13 @@ class SearchTextFilter implements Filter
         }
         if ($property === 'vehicle_name') {
             $query->whereHas('vehicle', function ($q) use ($value) {
-                return $q->where('title', $value);
+                return $q->where('title',  'like', '%'. $value .'%');
             });
         } else if ($property === 'chassis_no') {
             $query->whereHas('vehicle', function ($q) use($value) {
-                return $q->where('chassis_no', $value);
+                return $q->where('chassis_no', 'like', '%'. $value .'%');
             });
+
         }else {
             $query->where(function ($q) use ($value){
                 return $q->whereHas('make', function($q) use($value){

@@ -49,9 +49,9 @@ class ShippingDocController extends Controller
     public function store(Request $request){
         
         $validated = $request->validate([
-            'vehicle_id' => 'required',
-            'country_id' => 'required',
-            'customer_id' => 'required',
+            'vehicle_id' => 'required|exists:vehicles,id',
+            'country_id' => 'required|exists:countries,id',
+            'customer_id' => 'required|exists:customers,id',
             'etd' => 'required',
             'eta' => 'required',
             'doc' => 'required',

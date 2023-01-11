@@ -24,7 +24,17 @@ class InqueryController extends Controller
     }
 
     public function store(Request $request){
+        $validated = $request->validate([
+            'name' => 'required',
+            'vehicle_id'  => 'required|exists:vehicles,id',
+            'country_id'  => 'required|exists:countries,id',
+            'email'  => 'required',
+            'cell_no'  => 'required',
+            'port_name'  => 'required',
+            'mobile_no'  => 'required',
+        ]);
         try{
+            
             $result = DB::transaction(function () use ($request) {
                 $inquery = Inquery::create($request->all());
 
